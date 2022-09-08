@@ -8,7 +8,7 @@ class BinaryNode
 
     constructor(element, headline, text)
     {
-        this.element =  element;
+        this.element = element;
         this.headline = headline;
         this.text = text;
         this.left = null;
@@ -44,28 +44,19 @@ class CreateYourOwnTree
     traverse(choice)
     {
         let retVal = "";
-        if (choice === "A")
-        {
+        if (choice === 0) {
             this.currNode = this.currNode.right;
-            if (this.currNode.right === null)
-            {
+            if (this.currNode.right === null) {
                 retVal = this.end;
-            }
-            else
-            {
+            } else {
                 retVal = {"text": this.currNode.right.text, "headline": this.currNode.right.headline};
             }
-        }
-        else if (choice === "B")
-        {
+        } else if (choice === 1) {
             this.currNode = this.currNode.left;
 
-            if (this.currNode.left === null)
-            {
+            if (this.currNode.left === null) {
                 retVal = this.end;
-            }
-            else
-            {
+            } else {
                 retVal = {"text": this.currNode.left.text, "headline": this.currNode.left.headline};
             }
         }
@@ -77,8 +68,7 @@ class CreateYourOwnTree
     {
         let retVal = this.end;
 
-        if (this.currNode !== null)
-        {
+        if (this.currNode !== null) {
             let line = this.currNode.element.split(" ");
             retVal = line[line.length - 1];
         }
@@ -89,13 +79,10 @@ class CreateYourOwnTree
     {
         let retVal = [];
 
-        if (this.currNode.right === null && this.currNode.left == null)
-        {
+        if (this.currNode.right === null && this.currNode.left == null) {
             retVal.push(this.end);
             retVal.push(this.end);
-        }
-        else if (this.currNode.right == null)
-        {
+        } else if (this.currNode.right == null) {
             let lineLeft = this.currNode.left.element.split(" ");
             let line = lineLeft[lineLeft.length - 1];
             retVal.push(this.end);
@@ -115,8 +102,7 @@ class CreateYourOwnTree
 
         this.root = this.insertRecursively(element, headline, text, this.root);
 
-        if (rootWasNull)
-        {
+        if (rootWasNull) {
             this.currNode = this.root;
         }
     }
@@ -125,23 +111,16 @@ class CreateYourOwnTree
     {
         let retVal = new BinaryNode(element, headline, text);
 
-        if (node != null)
-        {
+        if (node != null) {
             let newElement = this.compare(element, node);
 
-            if (newElement === node.element)
-            {
-                if (node.left != null && !(element.includes(node.left.element)))
-                {
+            if (newElement === node.element) {
+                if (node.left != null && !(element.includes(node.left.element))) {
                     node.right = this.insertRecursively(element, headline, text, node.right);
-                }
-                else
-                {
+                } else {
                     node.left = this.insertRecursively(element, headline, text, node.left);
                 }
-            }
-            else
-            {
+            } else {
                 node.right = this.insertRecursively(element, headline, text, node.right);
             }
             retVal = node;
@@ -156,11 +135,9 @@ class CreateYourOwnTree
         let nodeElement = node.element.split(" ");
 
         let newElement = "";
-        for (let i = 0; i < nodeElement.length; i++)
-        {
+        for (let i = 0; i < nodeElement.length; i++) {
             newElement += splitElement[i];
-            if (i !== nodeElement.length - 1)
-            {
+            if (i !== nodeElement.length - 1) {
                 newElement += " ";
             }
         }
@@ -181,8 +158,7 @@ class CreateYourOwnTree
     {
         this.allLeaves = [];
 
-        if (!this.isEmpty())
-        {
+        if (!this.isEmpty()) {
             this.getAllLeavesRecursively(this.root);
         }
 
@@ -191,12 +167,10 @@ class CreateYourOwnTree
 
     getAllLeavesRecursively(node)
     {
-        if (node != null)
-        {
+        if (node != null) {
             this.getAllLeavesRecursively(node.left);
-            if (node.left === null && node.right === null)
-            {
-                this.allLeaves.push(node.text);
+            if (node.left === null && node.right === null) {
+                this.allLeaves.push({"element": node.element, "headline": node.headline, "text": node.text});
             }
             this.getAllLeavesRecursively(node.right);
         }
@@ -205,38 +179,66 @@ class CreateYourOwnTree
     getTotalNodes()
     {
         this.totalNodes = 0;
-        if (!this.isEmpty())
-        {
+        if (!this.isEmpty()) {
             this.getTotalRecursively(this.root);
         }
     }
 
     getTotalRecursively(node)
     {
-        if (node !== null)
-        {
+        if (node !== null) {
             this.getTotalRecursively(node.left);
             this.totalNodes++;
             this.getTotalRecursively(node.right);
         }
     }
 
+    getStorylineFromKeyword(element)
+    {
+        let retVal = "";
+        if (this.isEmpty()) {
+            retVal = "There is no story yet. Write one?";
+        } else {
+            retVal = this.getStorylineFromKeywordRecursively(element, this.root);
+        }
+        return retVal;
+    }
+
+    getStorylineFromKeywordRecursively(element, node)
+    {
+        if (node != null) {
+            if (node.element === element)
+            {
+                return node.text;
+            }
+            else {
+                this.getStorylineFromKeywordRecursively(element, node.left);
+                if (node.element === element) {
+                    return node.text;
+                }
+                else
+                {
+                    this.getStorylineFromKeywordRecursively(element, node.right);
+                    if (node.element === element) {
+                        return node.text;
+                    }
+                }
+            }
+        }
+    }
+
     printTree()
     {
-        if (this.isEmpty())
-        {
+        if (this.isEmpty()) {
             console.log("N/A");
-        }
-        else
-        {
+        } else {
             this.printTreeRecursively(this.root);
         }
     }
 
     printTreeRecursively(node)
     {
-        if (node != null)
-        {
+        if (node != null) {
             this.printTreeRecursively(node.left);
             console.log(node.element);
             this.printTreeRecursively(node.right);
