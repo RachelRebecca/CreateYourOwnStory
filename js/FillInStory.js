@@ -11,5 +11,3 @@ tree.insert("Root Left", "Go with the giants?", "You go with the giants. They te
 tree.insert("Root Left LeftLeft", "Trick the dragon?", "You decide to trick the dragon, telling him there is a class full of children outside the castle.");
 
 tree.insert("Root Left LeftRight", "Lure the dragon?", "You decide to lure the dragon out of the castle, showing yourself off and then jumping into the lake so it will go after you.");
-
-tree.printTree();

@@ -4,24 +4,24 @@
     <meta charset="UTF-8">
     <title>Add New Page</title>
     <script src="js/CreateYourOwnTree.js"></script>
-    <script>
-        let tree = new CreateYourOwnTree();
-    </script>
     <script src="js/FillInStory.js"></script>
-    <script src="js/PrintTree.js"></script>
 </head>
 <body>
-<a href="displayStory.html" id="display">Display story</a>
 
+<form>
+    <input type="button" id="viewStory" value="View Current Stories" onclick="showStory()">
+    <input type="button" id="downloadStory" value="Download Current Stories" onclick="downloadStory()">
+</form>
+<script src="js/GatherStoryTogether.js"></script>
 <script>
-    function $(id)
+    function downloadStory()
     {
-        return document.getElementById(id);
+        // code to download gatherStoryTogether()
     }
-
-    $("#display").bind("click", function () {
-        window.open('displayStory.html');
-    });
+    function showStory()
+    {
+        alert(gatherStoryTogether());
+    }
 </script>
 </body>
 </html>
