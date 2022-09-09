@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Display Story</title>
+    <script>
+        let text;
+
+        function $(id)
+        {
+            return document.getElementById(id);
+        }
+
+        $(function ()
+        {
+            if (window.opener != null && !window.opener.closed) {
+                let parent = $(window.opener.document).contents();
+                text = parent.find(tree);
+                console.log(text);
+            }
+        });
+    </script>
+</head>
+<body>
+
+</body>
+</html>

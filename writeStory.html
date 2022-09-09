@@ -11,5 +11,17 @@
     <script src="js/PrintTree.js"></script>
 </head>
 <body>
+<a href="displayStory.html" id="display">Display story</a>
+
+<script>
+    function $(id)
+    {
+        return document.getElementById(id);
+    }
+
+    $("#display").bind("click", function () {
+        window.open('displayStory.html');
+    });
+</script>
 </body>
 </html>

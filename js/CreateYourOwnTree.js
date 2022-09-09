@@ -41,6 +41,29 @@ class CreateYourOwnTree
         this.end = "THE END";
     }
 
+    /*
+        constructor(root, allElementsToBeAdded)
+    {
+        this.allLeaves = [];
+        this.root = root;
+        this.currNode = this.root;
+        this.end = "THE END";
+
+        if (allElementsToBeAdded.length === 0)
+        {
+            this.totalNodes = 0;
+        }
+        else
+        {
+            for (let i = 0; i < allElementsToBeAdded.length; i++)
+            {
+                this.insert(allElementsToBeAdded[i]);
+            }
+            this.totalNodes = allElementsToBeAdded.length + 1;
+        }
+    }
+    */
+
     traverse(choice)
     {
         let retVal = "";
