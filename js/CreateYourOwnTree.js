@@ -212,17 +212,7 @@ class CreateYourOwnTree
                 return node.text;
             }
             else {
-                this.getStorylineFromKeywordRecursively(element, node.left);
-                if (node.element === element) {
-                    return node.text;
-                }
-                else
-                {
-                    this.getStorylineFromKeywordRecursively(element, node.right);
-                    if (node.element === element) {
-                        return node.text;
-                    }
-                }
+                return this.getStorylineFromKeywordRecursively(element, node.left) || this.getStorylineFromKeywordRecursively(element, node.right);
             }
         }
     }
