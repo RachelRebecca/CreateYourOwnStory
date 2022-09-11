@@ -8,31 +8,47 @@
 </head>
 <body>
 
-<form>
+<form id="createStory">
+    <div>
+        <script>
+            let options = [];
+            let leaves = tree.getAllLeaves();
+            for (let i = 0; i < leaves.length; i++) {
+                if (leaves[i].headline !== tree.END) {
+                    options.push(leaves[i].headline);
+                }
+            }
+        </script>
+        <label for="thisPageHeadline">Select the headline for this page</label>
+        <select name="thisPageHeadline" id="thisPageHeadline">
+            <script>
+                for (let i = 0; i < options.length; i++) {
+                    let option = document.createElement("option");
+                    option.value = i;
+                    option.innerHTML = options[i];
+                    document.getElementById("thisPageHeadline").append(option);
+                }
+            </script>
+        </select>
+    </div>
+    <div>
+        <label for="text">Enter the page text</label>
+        <textarea id="text" name="id"></textarea>
+    </div>
+    <div>
+        <label for="headlines">Enter the headlines for the next two pages
+        </label>
+        <div id="headlines">
+            <input type="text" class=headlines" name="headlines">
+            <input type="text" class="headlines" name="headlines">
+        </div>
+    </div>
+</form>
+<form id="displayStory">
     <input type="button" id="viewStory" value="View Current Stories" onclick="showStory()">
-    <input type="button" id="downloadStory" value="Download Current Stories" onclick="download('story.txt', gatherStoryTogether())">
+    <input type="button" id="downloadStory" value="Download Current Stories"
+           onclick="download('story.txt', gatherStoryTogether())">
 </form>
 <script src="js/GatherStoryTogether.js"></script>
-<script>
-    // download code came from
-    // https://stackoverflow.com/questions/3665115/how-to-create-a-file-in-memory-for-user-to-download-but-not-through-server
-    function download(filename, text) {
-        let element = document.createElement('a');
-        element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
-        element.setAttribute('download', filename);
-
-        element.style.display = 'none';
-        document.body.appendChild(element);
-
-        element.click();
-
-        document.body.removeChild(element);
-    }
-
-    function showStory()
-    {
-        alert(gatherStoryTogether());
-    }
-</script>
 </body>
 </html>

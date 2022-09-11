@@ -26,7 +26,7 @@ class CreateYourOwnTree
 
     currNode;
 
-    end;
+    END;
 
     constructor()
     {
@@ -38,31 +38,8 @@ class CreateYourOwnTree
 
         this.currNode = this.root;
 
-        this.end = "THE END";
+        this.END = "THE END";
     }
-
-    /*
-        constructor(root, allElementsToBeAdded)
-    {
-        this.allLeaves = [];
-        this.root = root;
-        this.currNode = this.root;
-        this.end = "THE END";
-
-        if (allElementsToBeAdded.length === 0)
-        {
-            this.totalNodes = 0;
-        }
-        else
-        {
-            for (let i = 0; i < allElementsToBeAdded.length; i++)
-            {
-                this.insert(allElementsToBeAdded[i]);
-            }
-            this.totalNodes = allElementsToBeAdded.length + 1;
-        }
-    }
-    */
 
     traverse(choice)
     {
@@ -70,7 +47,7 @@ class CreateYourOwnTree
         if (choice === 0) {
             this.currNode = this.currNode.right;
             if (this.currNode.right === null) {
-                retVal = this.end;
+                retVal = this.END;
             } else {
                 retVal = {"text": this.currNode.right.text, "headline": this.currNode.right.headline};
             }
@@ -78,7 +55,7 @@ class CreateYourOwnTree
             this.currNode = this.currNode.left;
 
             if (this.currNode.left === null) {
-                retVal = this.end;
+                retVal = this.END;
             } else {
                 retVal = {"text": this.currNode.left.text, "headline": this.currNode.left.headline};
             }
@@ -89,7 +66,7 @@ class CreateYourOwnTree
 
     getCurrStory()
     {
-        let retVal = this.end;
+        let retVal = this.END;
 
         if (this.currNode !== null) {
             let line = this.currNode.element.split(" ");
@@ -103,12 +80,12 @@ class CreateYourOwnTree
         let retVal = [];
 
         if (this.currNode.right === null && this.currNode.left == null) {
-            retVal.push(this.end);
-            retVal.push(this.end);
+            retVal.push(this.END);
+            retVal.push(this.END);
         } else if (this.currNode.right == null) {
             let lineLeft = this.currNode.left.element.split(" ");
             let line = lineLeft[lineLeft.length - 1];
-            retVal.push(this.end);
+            retVal.push(this.END);
             retVal.push(line);
         }
         return retVal;
@@ -216,18 +193,18 @@ class CreateYourOwnTree
         }
     }
 
-    getStorylineFromKeyword(element)
+    getStorylineFromPath(element)
     {
         let retVal = "";
         if (this.isEmpty()) {
             retVal = "There is no story yet. Write one?";
         } else {
-            retVal = this.getStorylineFromKeywordRecursively(element, this.root);
+            retVal = this.getStorylineFromPathRecursively(element, this.root);
         }
         return retVal;
     }
 
-    getStorylineFromKeywordRecursively(element, node)
+    getStorylineFromPathRecursively(element, node)
     {
         if (node != null) {
             if (node.element === element)
@@ -235,9 +212,58 @@ class CreateYourOwnTree
                 return node.text;
             }
             else {
-                return this.getStorylineFromKeywordRecursively(element, node.left) || this.getStorylineFromKeywordRecursively(element, node.right);
+                return this.getStorylineFromPathRecursively(element, node.left) || this.getStorylineFromPathRecursively(element, node.right);
             }
         }
+    }
+
+    getPathFromHeadline(headline)
+    {
+        let retVal = "";
+        if (this.isEmpty()) {
+            retVal = "There is no story yet. Write one?";
+        } else {
+            retVal = this.getPathFromHeadlineRecursively(headline, this.root);
+        }
+        return retVal;
+    }
+
+    getPathFromHeadlineRecursively(headline, node)
+    {
+        if (node != null) {
+            if (node.element === headline)
+            {
+                return node.path;
+            }
+            else {
+                return this.getPathFromHeadlineRecursively(headline, node.left) || this.getPathFromHeadlineRecursively(headline, node.right);
+            }
+        }
+    }
+
+
+    containsPath(path)
+    {
+        let retVal = false;
+        if (!this.isEmpty())
+        {
+            retVal = this.containsPathRecursiveCheck(path, this.root)
+        }
+        return retVal;
+    }
+
+    containsPathRecursiveCheck(path, node)
+    {
+        if (node != null) {
+            if (node.element === path)
+            {
+                return true;
+            }
+            else {
+                return this.containsPathRecursiveCheck(path, node.left) || this.containsPathRecursiveCheck(path, node.right);
+            }
+        }
+        return false;
     }
 
     printTree()
