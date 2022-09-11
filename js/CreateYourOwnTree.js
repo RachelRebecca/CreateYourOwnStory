@@ -207,11 +207,9 @@ class CreateYourOwnTree
     getStorylineFromPathRecursively(element, node)
     {
         if (node != null) {
-            if (node.element === element)
-            {
+            if (node.element === element) {
                 return node.text;
-            }
-            else {
+            } else {
                 return this.getStorylineFromPathRecursively(element, node.left) || this.getStorylineFromPathRecursively(element, node.right);
             }
         }
@@ -231,11 +229,9 @@ class CreateYourOwnTree
     getPathFromHeadlineRecursively(headline, node)
     {
         if (node != null) {
-            if (node.element === headline)
-            {
+            if (node.element === headline) {
                 return node.path;
-            }
-            else {
+            } else {
                 return this.getPathFromHeadlineRecursively(headline, node.left) || this.getPathFromHeadlineRecursively(headline, node.right);
             }
         }
@@ -245,8 +241,7 @@ class CreateYourOwnTree
     containsPath(path)
     {
         let retVal = false;
-        if (!this.isEmpty())
-        {
+        if (!this.isEmpty()) {
             retVal = this.containsPathRecursiveCheck(path, this.root)
         }
         return retVal;
@@ -255,11 +250,9 @@ class CreateYourOwnTree
     containsPathRecursiveCheck(path, node)
     {
         if (node != null) {
-            if (node.element === path)
-            {
+            if (node.element === path) {
                 return true;
-            }
-            else {
+            } else {
                 return this.containsPathRecursiveCheck(path, node.left) || this.containsPathRecursiveCheck(path, node.right);
             }
         }
@@ -284,3 +277,5 @@ class CreateYourOwnTree
         }
     }
 }
+
+let tree = new CreateYourOwnTree();
