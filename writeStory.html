@@ -3,19 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <title>Add New Page</title>
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
     <script src="js/CreateYourOwnTree.js"></script>
     <script src="js/FillInStory.js"></script>
     <script>
-        function $(id)
-        {
-            return document.getElementById(id);
-        }
-
         let tree = new CreateYourOwnTree();
 
-        let previousHeadline = "";
 
-        let root = prompt("Insert headline for the first, root page");
+        let previousHeadline;
+        if (sessionStorage.getItem('previousHeadline') === null
+            || sessionStorage.getItem('previousHeadline') === "")
+        {
+            previousHeadline = "";
+            sessionStorage.setItem('previousHeadline', previousHeadline);
+        }
+        else
+        {
+            previousHeadline = sessionStorage.getItem('previousHeadline');
+        }
+
+        let root;
+        if (sessionStorage.getItem('root') === null) {
+            root = prompt("Insert headline for the first, root page");
+            sessionStorage.setItem('root', root);
+        }
+        else
+        {
+            root = sessionStorage.getItem('root');
+        }
     </script>
 </head>
 <body>
