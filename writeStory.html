@@ -5,6 +5,18 @@
     <title>Add New Page</title>
     <script src="js/CreateYourOwnTree.js"></script>
     <script src="js/FillInStory.js"></script>
+    <script>
+        function $(id)
+        {
+            return document.getElementById(id);
+        }
+
+        let tree = new CreateYourOwnTree();
+
+        let previousHeadline = "";
+
+        let root = prompt("Insert headline for the first, root page");
+    </script>
 </head>
 <body>
 
@@ -12,12 +24,20 @@
     <div>
         <script>
             let options = [];
-            let leaves = tree.getAllLeaves();
-            for (let i = 0; i < leaves.length; i++) {
-                if (leaves[i].headline !== tree.END) {
-                    options.push(leaves[i].headline);
+            if (tree.isEmpty())
+            {
+                options.push(root);
+            }
+            else
+            {
+                let leaves = tree.getAllLeaves();
+                for (let i = 0; i < leaves.length; i++) {
+                    if (leaves[i].headline !== tree.END) {
+                        options.push(leaves[i].headline);
+                    }
                 }
             }
+
         </script>
         <label for="thisPageHeadline">Select the headline for this page</label>
         <select name="thisPageHeadline" id="thisPageHeadline">
@@ -26,7 +46,7 @@
                     let option = document.createElement("option");
                     option.value = i;
                     option.innerHTML = options[i];
-                    document.getElementById("thisPageHeadline").append(option);
+                   $("thisPageHeadline").append(option);
                 }
             </script>
         </select>
@@ -36,13 +56,41 @@
         <textarea id="text" name="id"></textarea>
     </div>
     <div>
-        <label for="headlines">Enter the headlines for the next two pages
-        </label>
-        <div id="headlines">
-            <input type="text" class=headlines" name="headlines">
-            <input type="text" class="headlines" name="headlines">
-        </div>
+        <label for="isThisEnd">Does this page end this specific story?</label>
+        <input id="isThisEnd" type="checkbox">
     </div>
+    <div>
+        <input type="submit" value="Enter this page" onsubmit="doOnSubmit()">
+    </div>
+</form>
+
+<script>
+    function doOnSubmit()
+    {
+        if (!$("isThisEnd").checked)
+        {
+            let headline1 = prompt("Enter the headline for the first of the next two pages: ");
+            let headline2 = prompt("Enter the headline for the second of the next two pages: ");
+
+            let thisPageHeadline = ($("thisPageHeadline").selected);
+            addTwoNewHeadlines(thisPageHeadline, headline1, headline2);
+
+            insertNewTreeElement(previousHeadline, thisPageHeadline, $("text"));
+
+            previousHeadline = thisPageHeadline;
+        }
+    }
+</script>
+
+<!--<div>
+    <label for="headlines">Enter the headlines for the next two pages
+    </label>
+    <div id="headlines">
+        <input type="text" class=headlines" name="headlines">
+        <input type="text" class="headlines" name="headlines">
+    </div>
+</div>-->
+<hr>
 </form>
 <form id="displayStory">
     <input type="button" id="viewStory" value="View Current Stories" onclick="showStory()">

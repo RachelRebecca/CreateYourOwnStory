@@ -284,5 +284,3 @@ class CreateYourOwnTree
         }
     }
 }
-
-let tree = new CreateYourOwnTree();
