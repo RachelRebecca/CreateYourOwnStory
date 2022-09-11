@@ -41,56 +41,6 @@ class CreateYourOwnTree
         this.END = "THE END";
     }
 
-    traverse(choice)
-    {
-        let retVal = "";
-        if (choice === 0) {
-            this.currNode = this.currNode.right;
-            if (this.currNode.right === null) {
-                retVal = this.END;
-            } else {
-                retVal = {"text": this.currNode.right.text, "headline": this.currNode.right.headline};
-            }
-        } else if (choice === 1) {
-            this.currNode = this.currNode.left;
-
-            if (this.currNode.left === null) {
-                retVal = this.END;
-            } else {
-                retVal = {"text": this.currNode.left.text, "headline": this.currNode.left.headline};
-            }
-        }
-
-        return retVal;
-    }
-
-    getCurrStory()
-    {
-        let retVal = this.END;
-
-        if (this.currNode !== null) {
-            let line = this.currNode.element.split(" ");
-            retVal = line[line.length - 1];
-        }
-        return retVal;
-    }
-
-    getNextChoices()
-    {
-        let retVal = [];
-
-        if (this.currNode.right === null && this.currNode.left == null) {
-            retVal.push(this.END);
-            retVal.push(this.END);
-        } else if (this.currNode.right == null) {
-            let lineLeft = this.currNode.left.element.split(" ");
-            let line = lineLeft[lineLeft.length - 1];
-            retVal.push(this.END);
-            retVal.push(line);
-        }
-        return retVal;
-    }
-
     resetStory()
     {
         this.currNode = this.root;
@@ -176,23 +126,6 @@ class CreateYourOwnTree
         }
     }
 
-    getTotalNodes()
-    {
-        this.totalNodes = 0;
-        if (!this.isEmpty()) {
-            this.getTotalRecursively(this.root);
-        }
-    }
-
-    getTotalRecursively(node)
-    {
-        if (node !== null) {
-            this.getTotalRecursively(node.left);
-            this.totalNodes++;
-            this.getTotalRecursively(node.right);
-        }
-    }
-
     getStorylineFromPath(element)
     {
         let retVal = "";
@@ -237,7 +170,6 @@ class CreateYourOwnTree
         }
     }
 
-
     containsPath(path)
     {
         let retVal = false;
@@ -257,24 +189,6 @@ class CreateYourOwnTree
             }
         }
         return false;
-    }
-
-    printTree()
-    {
-        if (this.isEmpty()) {
-            console.log("N/A");
-        } else {
-            this.printTreeRecursively(this.root);
-        }
-    }
-
-    printTreeRecursively(node)
-    {
-        if (node != null) {
-            this.printTreeRecursively(node.left);
-            console.log(node.element);
-            this.printTreeRecursively(node.right);
-        }
     }
 }
 
