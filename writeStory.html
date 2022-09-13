@@ -6,6 +6,19 @@
     <script src="js/CreateYourOwnTree.js"></script>
     <script src="js/FillInStory.js"></script>
     <script>
+        let nodes = tree.getAllNodes();
+
+        if (sessionStorage.getItem('nodes') !== null)
+        {
+            nodes = sessionStorage.getItem('nodes');
+            console.log(nodes);
+
+            for (let i = 0; i < nodes.length; i++)
+            {
+                tree.insert(nodes[i].element, nodes[i].headline, nodes[i].text);
+            }
+        }
+
         let previousHeadline;
         if (sessionStorage.getItem('previousHeadline') === null
             || sessionStorage.getItem('previousHeadline') === "") {
@@ -81,8 +94,16 @@
 
             sessionStorage.setItem("previousHeadline", thisPageHeadline);
 
+            let nodes = tree.getAllNodes();
+            console.log(nodes[0].nodePath);
+            sessionStorage.setItem("nodes", JSON.stringify(nodes));
+
+            nodes = (sessionStorage.getItem("nodes"));
+            console.log(nodes[0].element);
             showStory();
         }
+
+
     }
 </script>
 

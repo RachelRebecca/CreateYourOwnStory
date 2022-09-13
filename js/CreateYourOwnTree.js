@@ -22,6 +22,8 @@ class CreateYourOwnTree
 
     allLeaves;
 
+    allNodes;
+
     totalNodes;
 
     currNode;
@@ -33,6 +35,8 @@ class CreateYourOwnTree
         this.root = null;
 
         this.allLeaves = [];
+
+        this.allNodes = [];
 
         this.totalNodes = 0;
 
@@ -102,6 +106,28 @@ class CreateYourOwnTree
     isEmpty()
     {
         return this.root === null;
+    }
+
+    getAllNodes()
+    {
+        this.allNodes = [];
+
+        if (!this.isEmpty())
+        {
+            this.getAllNodesRecursively(this.root);
+        }
+
+        return this.allNodes;
+    }
+
+    getAllNodesRecursively(node)
+    {
+        if (node != null)
+        {
+            this.getAllNodesRecursively(node.left);
+            this.allNodes.push({"nodePath": node.element, "headline": node.headline, "text": node.text});
+            this.getAllNodesRecursively(node.right);
+        }
     }
 
     getAllLeaves()
