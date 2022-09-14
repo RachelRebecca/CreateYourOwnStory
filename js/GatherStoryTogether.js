@@ -3,13 +3,13 @@ function gatherStoryTogether()
     let story = "";
 
     if (tree.isEmpty()) {
-        story += "Your text is currently empty. Start filling it out?";
+        story += "There is no story yet. Write one?";
     } else {
         let leaves = tree.getAllLeaves();
 
         for (let i = 0; i < leaves.length; i++) {
             let currPath = "";
-            let splitLeafBySpace = leaves[i].element.split(" ");
+            let splitLeafBySpace = leaves[i].nodePath.split(" ");
 
             for (let j = 0; j < splitLeafBySpace.length; j++) {
                 currPath += (j === 0 ? splitLeafBySpace[j] : (" " + splitLeafBySpace[j]));

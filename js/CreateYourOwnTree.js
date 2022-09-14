@@ -1,14 +1,14 @@
 class BinaryNode
 {
-    element;
+    nodePath;
     headline;
     text;
     left;
     right;
 
-    constructor(element, headline, text)
+    constructor(nodePath, headline, text)
     {
-        this.element = element;
+        this.nodePath = nodePath;
         this.headline = headline;
         this.text = text;
         this.left = null;
@@ -50,32 +50,32 @@ class CreateYourOwnTree
         this.currNode = this.root;
     }
 
-    insert(element, headline, text)
+    insert(nodePath, headline, text)
     {
         let rootWasNull = (this.root === null);
 
-        this.root = this.insertRecursively(element, headline, text, this.root);
+        this.root = this.insertRecursively(nodePath, headline, text, this.root);
 
         if (rootWasNull) {
             this.currNode = this.root;
         }
     }
 
-    insertRecursively(element, headline, text, node)
+    insertRecursively(nodePath, headline, text, node)
     {
-        let retVal = new BinaryNode(element, headline, text);
+        let retVal = new BinaryNode(nodePath, headline, text);
 
         if (node != null) {
-            let newElement = this.compare(element, node);
+            let newPath = this.compare(nodePath, node);
 
-            if (newElement === node.element) {
-                if (node.left != null && !(element.includes(node.left.element))) {
-                    node.right = this.insertRecursively(element, headline, text, node.right);
+            if (newPath === node.nodePath) {
+                if (node.left != null && !(nodePath.includes(node.left.nodePath))) {
+                    node.right = this.insertRecursively(nodePath, headline, text, node.right);
                 } else {
-                    node.left = this.insertRecursively(element, headline, text, node.left);
+                    node.left = this.insertRecursively(nodePath, headline, text, node.left);
                 }
             } else {
-                node.right = this.insertRecursively(element, headline, text, node.right);
+                node.right = this.insertRecursively(nodePath, headline, text, node.right);
             }
             retVal = node;
         }
@@ -83,19 +83,19 @@ class CreateYourOwnTree
         return retVal;
     }
 
-    compare(element, node)
+    compare(nodePath, node)
     {
-        let splitElement = element.split(" ");
-        let nodeElement = node.element.split(" ");
+        let splitPath = nodePath.split(" ");
+        let path = node.nodePath.split(" ");
 
-        let newElement = "";
-        for (let i = 0; i < nodeElement.length; i++) {
-            newElement += splitElement[i];
-            if (i !== nodeElement.length - 1) {
-                newElement += " ";
+        let newPath = "";
+        for (let i = 0; i < path.length; i++) {
+            newPath += splitPath[i];
+            if (i !== path.length - 1) {
+                newPath += " ";
             }
         }
-        return newElement;
+        return newPath;
     }
 
     makeEmpty()
@@ -125,7 +125,7 @@ class CreateYourOwnTree
         if (node != null)
         {
             this.getAllNodesRecursively(node.left);
-            this.allNodes.push({"nodePath": node.element, "headline": node.headline, "text": node.text});
+            this.allNodes.push({"nodePath": node.nodePath, "headline": node.headline, "text": node.text});
             this.getAllNodesRecursively(node.right);
         }
     }
@@ -146,49 +146,45 @@ class CreateYourOwnTree
         if (node != null) {
             this.getAllLeavesRecursively(node.left);
             if (node.left === null && node.right === null) {
-                this.allLeaves.push({"element": node.element, "headline": node.headline, "text": node.text});
+                this.allLeaves.push({"nodePath": node.nodePath, "headline": node.headline, "text": node.text});
             }
             this.getAllLeavesRecursively(node.right);
         }
     }
 
-    getStorylineFromPath(element)
+    getStorylineFromPath(nodePath)
     {
-        let retVal = "";
         if (this.isEmpty()) {
-            retVal = "There is no story yet. Write one?";
+            return "There is no story yet. Write one?";
         } else {
-            retVal = this.getStorylineFromPathRecursively(element, this.root);
+            return this.getStorylineFromPathRecursively(nodePath, this.root);
         }
-        return retVal;
     }
 
-    getStorylineFromPathRecursively(element, node)
+    getStorylineFromPathRecursively(nodePath, node)
     {
         if (node != null) {
-            if (node.element === element) {
+            if (node.nodePath === nodePath) {
                 return node.text;
             } else {
-                return this.getStorylineFromPathRecursively(element, node.left) || this.getStorylineFromPathRecursively(element, node.right);
+                return this.getStorylineFromPathRecursively(nodePath, node.left) || this.getStorylineFromPathRecursively(nodePath, node.right);
             }
         }
     }
 
     getPathFromHeadline(headline)
     {
-        let retVal = "";
         if (this.isEmpty()) {
-            retVal = "There is no story yet. Write one?";
+            return "There is no story yet. Write one?";
         } else {
-            retVal = this.getPathFromHeadlineRecursively(headline, this.root);
+            return this.getPathFromHeadlineRecursively(headline, this.root);
         }
-        return retVal;
     }
 
     getPathFromHeadlineRecursively(headline, node)
     {
         if (node != null) {
-            if (node.element === headline) {
+            if (node.nodePath === headline) {
                 return node.path;
             } else {
                 return this.getPathFromHeadlineRecursively(headline, node.left) || this.getPathFromHeadlineRecursively(headline, node.right);
@@ -198,20 +194,19 @@ class CreateYourOwnTree
 
     containsPath(path)
     {
-        let retVal = false;
         if (!this.isEmpty()) {
-            retVal = this.containsPathRecursiveCheck(path, this.root)
+             return this.containsPathRecursiveCheck(path, this.root)
         }
-        return retVal;
+        return false;
     }
 
-    containsPathRecursiveCheck(path, node)
+    containsPathRecursiveCheck(nodePath, node)
     {
         if (node != null) {
-            if (node.element === path) {
+            if (node.nodePath === nodePath) {
                 return true;
             } else {
-                return this.containsPathRecursiveCheck(path, node.left) || this.containsPathRecursiveCheck(path, node.right);
+                return this.containsPathRecursiveCheck(nodePath, node.left) || this.containsPathRecursiveCheck(nodePath, node.right);
             }
         }
         return false;
