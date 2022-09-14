@@ -10,12 +10,12 @@
 
         if (sessionStorage.getItem('nodes') !== null)
         {
-            nodes = sessionStorage.getItem('nodes');
+            nodes = JSON.parse(sessionStorage.getItem('nodes'));
             console.log(nodes);
 
             for (let i = 0; i < nodes.length; i++)
             {
-                tree.insert(nodes[i].element, nodes[i].headline, nodes[i].text);
+                tree.insert(nodes[i].nodePath, nodes[i].headline, nodes[i].text);
             }
         }
 
@@ -86,6 +86,8 @@
 
             let element = document.getElementById("thisPageHeadline");
             let thisPageHeadline = element.options[element.selectedIndex].text;
+            console.log(thisPageHeadline);
+
             addTwoNewHeadlines(thisPageHeadline, headline1, headline2);
 
             // REMOVE THIS PAGE HEADLINE FROM OPTIONS AND ADD THE TWO NEW HEADLINES INSTEAD IF THE PAGE IS NOT AN END!!
@@ -95,11 +97,7 @@
             sessionStorage.setItem("previousHeadline", thisPageHeadline);
 
             let nodes = tree.getAllNodes();
-            console.log(nodes[0].nodePath);
             sessionStorage.setItem("nodes", JSON.stringify(nodes));
-
-            nodes = (sessionStorage.getItem("nodes"));
-            console.log(nodes[0].element);
             showStory();
         }
 
