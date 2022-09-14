@@ -5,6 +5,7 @@
     <title>Add New Page</title>
     <script src="js/CreateYourOwnTree.js"></script>
     <script src="js/FillInStory.js"></script>
+
     <script>
         let nodes = tree.getAllNodes();
 
@@ -35,6 +36,9 @@
         } else {
             root = sessionStorage.getItem('root');
         }
+
+        let headline1 = sessionStorage.getItem('headline1');
+        let headline2 = sessionStorage.getItem('headline2');
     </script>
 </head>
 <body>
@@ -52,6 +56,12 @@
                         if (leaves[i].headline !== tree.END) {
                             options.push(leaves[i].headline);
                         }
+                    }
+
+                    if (headline1 !== null && headline2 !== null)
+                    {
+                        options.push(headline1);
+                        options.push(headline2);
                     }
                 }
 
@@ -80,33 +90,40 @@
 <script>
     function doOnSubmit()
     {
-        if (document.getElementById("doesThisContinue").checked) {
+        let element = document.getElementById("thisPageHeadline");
+        let index = element.selectedIndex;
+        let selectedOption = element.options[index];
+        let thisPageHeadline = selectedOption.label;
+        console.log(thisPageHeadline);
+
+        if (document.getElementById("doesThisContinue").checked)
+        {
             let headline1 = prompt("Enter the headline for the first of the next two pages: ");
             let headline2 = prompt("Enter the headline for the second of the next two pages: ");
 
-            let element = document.getElementById("thisPageHeadline");
-            let thisPageHeadline = element.options[element.selectedIndex].text;
-            console.log(thisPageHeadline);
-
-            addTwoNewHeadlines(thisPageHeadline, headline1, headline2);
-
-            // REMOVE THIS PAGE HEADLINE FROM OPTIONS AND ADD THE TWO NEW HEADLINES INSTEAD IF THE PAGE IS NOT AN END!!
+            sessionStorage.setItem("headline1", headline1);
+            sessionStorage.setItem("headline2", headline2);
 
             insertNewTreeElement(previousHeadline, thisPageHeadline, document.getElementById("text").value);
 
             sessionStorage.setItem("previousHeadline", thisPageHeadline);
+        }
+        else
+        {
+            sessionStorage.setItem("headline1", null);
+            sessionStorage.setItem("headline2", null);
 
-            let nodes = tree.getAllNodes();
-            sessionStorage.setItem("nodes", JSON.stringify(nodes));
-            showStory();
+            insertNewTreeElement(thisPageHeadline, tree.END, "");
         }
 
-
+        let nodes = tree.getAllNodes();
+        sessionStorage.setItem("nodes", JSON.stringify(nodes));
+        showStory();
     }
 </script>
 
 <hr>
-</form>
+
 <form id="displayStory">
     <input type="button" id="viewStory" value="View Current Stories" onclick="showStory()">
     <input type="button" id="downloadStory" value="Download Current Stories"

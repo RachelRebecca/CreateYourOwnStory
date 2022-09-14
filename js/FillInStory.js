@@ -13,12 +13,6 @@ tree.insert("Root RootLeft RootLeftLeft", "Trick the dragon?", "You decide to tr
 tree.insert("Root RootLeft RootLeftRight", "Lure the dragon?", "You decide to lure the dragon out of the castle, showing yourself off and then jumping into the lake so it will go after you.");*/
 
 
-function addTwoNewHeadlines(thisPageHeadline, headline1, headline2)
-{
-    return {"thisPage": thisPageHeadline, "headline1": headline1, "headline2": headline2};
-}
-
-
 function insertNewTreeElement(pageBeforeHeadline, headline, text)
 {
     if (pageBeforeHeadline === "") {
