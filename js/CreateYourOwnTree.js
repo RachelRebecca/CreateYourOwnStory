@@ -184,8 +184,8 @@ class CreateYourOwnTree
     getPathFromHeadlineRecursively(headline, node)
     {
         if (node != null) {
-            if (node.nodePath === headline) {
-                return node.path;
+            if (node.headline === headline) {
+                return node.nodePath;
             } else {
                 return this.getPathFromHeadlineRecursively(headline, node.left) || this.getPathFromHeadlineRecursively(headline, node.right);
             }
