@@ -1,3 +1,37 @@
+function compare(a, b) {
+    const pathA = a.nodePath.split(" ");
+    const pathB = b.nodePath.split(" ");
+
+    let comparison = 0;
+    if (pathA.length > pathB.length) {
+        comparison = 1;
+    } else if (pathA.length < pathB.length) {
+        comparison = -1;
+    }
+    return comparison;
+}
+
+
+function insertNewTreeElement(pageBeforeHeadline, headline, text) {
+    console.log("Page before headline: " + pageBeforeHeadline + " headline: " + headline + " text: " + text);
+
+    if (pageBeforeHeadline === "") {
+        tree.insert("Root", headline, text);
+    } else {
+        let path = tree.getPathFromHeadline(pageBeforeHeadline);
+
+        let splitPath = path.split(" ");
+
+        path = path + " " + splitPath[splitPath.length - 1];
+
+        if (tree.containsPath(path + "Left")) {
+            tree.insert(path + "Right", headline, text);
+        } else {
+            tree.insert(path + "Left", headline, text);
+        }
+    }
+}
+
 function doOnSubmit() {
     let element = document.getElementById("thisPageHeadline");
     let index = element.selectedIndex;
@@ -23,7 +57,6 @@ function doOnSubmit() {
             if (index > -1) { // only splice array when item is found
                 headlines.splice(index, 1); // 2nd parameter means remove one item only
             }
-
         }
 
         sessionStorage.setItem("headlines", JSON.stringify(headlines));
@@ -34,22 +67,11 @@ function doOnSubmit() {
     } else {
         insertNewTreeElement(previousHeadline, thisPageHeadline, document.getElementById("text").value);
         insertNewTreeElement(thisPageHeadline, tree.END, "");
+
+        sessionStorage.setItem("previousHeadline", thisPageHeadline);
     }
 
     let nodes = tree.getAllNodes();
-
-    function compare(a, b) {
-        const pathA = a.nodePath.split(" ");
-        const pathB = b.nodePath.split(" ");
-
-        let comparison = 0;
-        if (pathA.length > pathB.length) {
-            comparison = 1;
-        } else if (pathA.length < pathB.length) {
-            comparison = -1;
-        }
-        return comparison;
-    }
 
     nodes = nodes.sort(compare);
 
@@ -58,24 +80,4 @@ function doOnSubmit() {
     sessionStorage.setItem("nodes", JSON.stringify(nodes));
 
     showStory();
-}
-
-function insertNewTreeElement(pageBeforeHeadline, headline, text) {
-    console.log("Page before headline: " + pageBeforeHeadline + " headline: " + headline + " text: " + text);
-
-    if (pageBeforeHeadline === "") {
-        tree.insert("Root", headline, text);
-    } else {
-        let path = tree.getPathFromHeadline(pageBeforeHeadline);
-
-        let splitPath = path.split(" ");
-
-        path = path + " " + splitPath[splitPath.length - 1];
-
-        if (tree.containsPath(path + "Left")) {
-            tree.insert(path + "Right", headline, text);
-        } else {
-            tree.insert(path + "Left", headline, text);
-        }
-    }
 }
