@@ -36,10 +36,8 @@ function organizeStoryIntoArray()
         let sortedText = [root.text];
         let sortedHeadlines = [root.headline];
 
-        for (let i = 0; i < nodes.length; i++)
-        {
-            if (nodes[i].text === root.text && nodes[i].headline === root.headline)
-            {
+        for (let i = 0; i < nodes.length; i++) {
+            if (nodes[i].text === root.text && nodes[i].headline === root.headline) {
                 continue;
             }
             sortedText.push(nodes[i].text);
@@ -48,8 +46,7 @@ function organizeStoryIntoArray()
         console.log(sortedText);
         console.log(sortedHeadlines);
 
-        for (let i = 0; i < sortedText.length; i++)
-        {
+        for (let i = 0; i < sortedText.length; i++) {
             story += "\nPage " + (i + 1) + "\n------------------\n" + sortedText[i] + "\n";
             let nextTwo = tree.getNextTwoHeadlines(sortedHeadlines[i]);
             console.log(nextTwo);

@@ -112,8 +112,7 @@ class CreateYourOwnTree
     {
         this.allNodes = [];
 
-        if (!this.isEmpty())
-        {
+        if (!this.isEmpty()) {
             this.getAllNodesRecursively(this.root);
         }
 
@@ -122,8 +121,7 @@ class CreateYourOwnTree
 
     getAllNodesRecursively(node)
     {
-        if (node != null)
-        {
+        if (node != null) {
             this.getAllNodesRecursively(node.left);
             this.allNodes.push({"nodePath": node.nodePath, "headline": node.headline, "text": node.text});
             this.getAllNodesRecursively(node.right);
@@ -195,7 +193,7 @@ class CreateYourOwnTree
     containsPath(path)
     {
         if (!this.isEmpty()) {
-             return this.containsPathRecursiveCheck(path, this.root)
+            return this.containsPathRecursiveCheck(path, this.root)
         }
         return false;
     }
@@ -214,29 +212,22 @@ class CreateYourOwnTree
 
     getNextTwoHeadlines(headline)
     {
-        if (tree.isEmpty())
-        {
+        if (tree.isEmpty()) {
             return ["", ""];
-        }
-        else
-        {
+        } else {
             return this.getNextTwoHeadlinesRecursively(this.root, headline);
         }
     }
 
     getNextTwoHeadlinesRecursively(node, headline)
     {
-        if (node != null)
-        {
-            if (node.headline === headline)
-            {
+        if (node != null) {
+            if (node.headline === headline) {
                 let headlines = [];
                 headlines.push(node.left === null ? "" : node.left.headline);
                 headlines.push(node.right === null ? "" : node.right.headline);
                 return headlines;
-            }
-            else
-            {
+            } else {
                 return this.getNextTwoHeadlinesRecursively(node.left, headline) || this.getNextTwoHeadlinesRecursively(node.right, headline);
             }
         }
