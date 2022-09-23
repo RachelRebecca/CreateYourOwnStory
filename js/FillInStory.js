@@ -32,6 +32,20 @@ function insertNewTreeElement(pageBeforeHeadline, headline, text) {
     }
 }
 
+function getPreviousHeadline(headlines, thisPageHeadline)
+{
+    let previousHeadline;
+    for (let i = 0; i < headlines.length; i++)
+    {
+        if (headlines[i].split("|")[1] === thisPageHeadline)
+        {
+            previousHeadline = headlines[i].split("|")[0];
+            break;
+        }
+    }
+    return previousHeadline;
+}
+
 function doOnSubmit() {
     let element = document.getElementById("thisPageHeadline");
     let index = element.selectedIndex;
@@ -44,31 +58,39 @@ function doOnSubmit() {
 
         console.log(headline1 + " " + headline2);
 
-        let headlines = JSON.parse(sessionStorage.getItem("headlines"));
+        let dropdownValues = JSON.parse(sessionStorage.getItem("dropdownValues"));
+        let headlines = JSON.parse(sessionStorage.getItem("headlines"))
 
-        if (headlines === null) {
-            headlines = [headline1, headline2];
-        } else {
+        if (dropdownValues === null || headlines === null) { // meaning this is the root page
+            dropdownValues = [headline1, headline2];
+            headlines = [thisPageHeadline + "|" + headline1, thisPageHeadline + "|" + headline2]; // store as pageBeforeHeadline|thisPageHeadline
+        } else { // there already exists at least two headlines (the root's two subsequent pages)
+            dropdownValues.push(headline1);
+            dropdownValues.push(headline2);
+            headlines.push(thisPageHeadline + "|" + headline1);
+            headlines.push(thisPageHeadline + "|" + headline2);
 
-            headlines.push(headline1);
-            headlines.push(headline2);
-
-            const index = headlines.indexOf(thisPageHeadline);
+            const index = dropdownValues.indexOf(thisPageHeadline);
             if (index > -1) { // only splice array when item is found
-                headlines.splice(index, 1); // 2nd parameter means remove one item only
+                dropdownValues.splice(index, 1); // 2nd parameter means remove one item only
             }
         }
 
+        sessionStorage.setItem("dropdownValues", JSON.stringify(dropdownValues));
         sessionStorage.setItem("headlines", JSON.stringify(headlines));
 
-        insertNewTreeElement(previousHeadline, thisPageHeadline, document.getElementById("text").value);
-
-        sessionStorage.setItem("previousHeadline", thisPageHeadline);
+        let previousHeadline = getPreviousHeadline(headlines, thisPageHeadline);
+        if (previousHeadline === null || previousHeadline === undefined){ // i.e. not found because page is root
+            insertNewTreeElement("", thisPageHeadline, document.getElementById("text").value)
+        }
+        else {
+            insertNewTreeElement(previousHeadline, thisPageHeadline, document.getElementById("text").value);
+        }
     } else {
+        let headlines = JSON.parse(sessionStorage.getItem("headlines"))
+        let previousHeadline = getPreviousHeadline(headlines, thisPageHeadline);
         insertNewTreeElement(previousHeadline, thisPageHeadline, document.getElementById("text").value);
         insertNewTreeElement(thisPageHeadline, tree.END, "");
-
-        sessionStorage.setItem("previousHeadline", thisPageHeadline);
     }
 
     let nodes = tree.getAllNodes();

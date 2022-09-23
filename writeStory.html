@@ -19,15 +19,6 @@
             }
         }
 
-        let previousHeadline;
-        if (sessionStorage.getItem('previousHeadline') === null
-            || sessionStorage.getItem('previousHeadline') === "") {
-            previousHeadline = "";
-            sessionStorage.setItem('previousHeadline', previousHeadline);
-        } else {
-            previousHeadline = sessionStorage.getItem('previousHeadline');
-        }
-
         let root;
         if (sessionStorage.getItem('root') === null) {
             root = prompt("Insert headline for the first, root page");
@@ -48,19 +39,12 @@
                 if (tree.isEmpty()) {
                     options.push(root);
                 } else {
-                    let leaves = tree.getAllLeaves();
-                    for (let i = 0; i < leaves.length; i++) {
-                        if (leaves[i].headline !== tree.END && leaves[i].headline !== previousHeadline) {
-                            options.push(leaves[i].headline);
-                        }
-                    }
+                    let dropdownValues = JSON.parse(sessionStorage.getItem('dropdownValues'));
 
-                    let headlines = JSON.parse(sessionStorage.getItem('headlines'));
-
-                    if (headlines !== null) {
-                        for (let i = 0; i < headlines.length; i++) {
-                            if (headlines[i] !== tree.END && headlines[i] !== previousHeadline) {
-                                options.push(headlines[i]);
+                    if (dropdownValues !== null) {
+                        for (let i = 0; i < dropdownValues.length; i++) {
+                            if (dropdownValues[i] !== tree.END) {
+                                options.push(dropdownValues[i]);
                             }
                         }
                     }
