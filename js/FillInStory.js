@@ -56,15 +56,13 @@ function doOnSubmit()
     let selectedOption = element.options[index];
     let thisPageHeadline = selectedOption.label;
     let storyText = document.getElementById("text").value;
+    let dropdownValues = JSON.parse(sessionStorage.getItem("dropdownValues"));
+    let headlines = JSON.parse(sessionStorage.getItem("headlines"))
+
 
     if (document.getElementById("doesThisContinue").checked) {
         let headline1 = prompt("Enter the headline for the first of the next two pages: ");
         let headline2 = prompt("Enter the headline for the second of the next two pages: ");
-
-        console.log(headline1 + " " + headline2);
-
-        let dropdownValues = JSON.parse(sessionStorage.getItem("dropdownValues"));
-        let headlines = JSON.parse(sessionStorage.getItem("headlines"))
 
         if (dropdownValues === null || headlines === null) { // meaning this is the root page
             dropdownValues = [headline1, headline2];
@@ -81,20 +79,16 @@ function doOnSubmit()
             }
         }
 
-        sessionStorage.setItem("dropdownValues", JSON.stringify(dropdownValues));
-        sessionStorage.setItem("headlines", JSON.stringify(headlines));
-
         let previousHeadline = getPreviousHeadline(headlines, thisPageHeadline);
         insertNewTreeElement(previousHeadline, thisPageHeadline, storyText);
+
     } else {
         // don't add any new headlines
-
-        let headlines = JSON.parse(sessionStorage.getItem("headlines"))
         let previousHeadline = "";
         if (headlines !== null) { // if there are no headlines, this is the root, so there are no pages yet.
             previousHeadline = getPreviousHeadline(headlines, thisPageHeadline);
         }
-        let dropdownValues = JSON.parse(sessionStorage.getItem("dropdownValues"));
+
         // remove this page from dropdowns
         if (dropdownValues !== null) {
             const index = dropdownValues.indexOf(thisPageHeadline);
@@ -102,11 +96,10 @@ function doOnSubmit()
                 dropdownValues.splice(index, 1); // 2nd parameter means remove one item only
             }
         }
-        sessionStorage.setItem("dropdownValues", JSON.stringify(dropdownValues));
-        sessionStorage.setItem("headlines", JSON.stringify(headlines));
-
         insertNewTreeElement(previousHeadline, thisPageHeadline, storyText + "\n" + tree.END);
     }
+    sessionStorage.setItem("dropdownValues", JSON.stringify(dropdownValues));
+    sessionStorage.setItem("headlines", JSON.stringify(headlines));
 
     let nodes = tree.getAllNodes();
 
