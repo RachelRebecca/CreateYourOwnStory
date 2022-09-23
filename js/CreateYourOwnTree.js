@@ -211,6 +211,36 @@ class CreateYourOwnTree
         }
         return false;
     }
+
+    getNextTwoHeadlines(headline)
+    {
+        if (tree.isEmpty())
+        {
+            return ["", ""];
+        }
+        else
+        {
+            return this.getNextTwoHeadlinesRecursively(this.root, headline);
+        }
+    }
+
+    getNextTwoHeadlinesRecursively(node, headline)
+    {
+        if (node != null)
+        {
+            if (node.headline === headline)
+            {
+                let headlines = [];
+                headlines.push(node.left === null ? "" : node.left.headline);
+                headlines.push(node.right === null ? "" : node.right.headline);
+                return headlines;
+            }
+            else
+            {
+                return this.getNextTwoHeadlinesRecursively(node.left, headline) || this.getNextTwoHeadlinesRecursively(node.right, headline);
+            }
+        }
+    }
 }
 
 let tree = new CreateYourOwnTree();

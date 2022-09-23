@@ -109,5 +109,5 @@ function doOnSubmit()
 
     sessionStorage.setItem("nodes", JSON.stringify(nodes));
 
-    showStory();
+    showStories();
 }

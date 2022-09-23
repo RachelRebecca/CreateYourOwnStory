@@ -24,6 +24,47 @@ function gatherStoryTogether()
     return (story);
 }
 
+function organizeStoryIntoArray()
+{
+    let story = "";
+    if (tree.isEmpty()) {
+        story += "There is no story yet. Write one?";
+    } else {
+        let nodes = tree.getAllNodes();
+        let root = tree.root;
+        nodes = nodes.sort(() => Math.random() - 0.5);
+        let sortedText = [root.text];
+        let sortedHeadlines = [root.headline];
+
+        for (let i = 0; i < nodes.length; i++)
+        {
+            if (nodes[i].text === root.text && nodes[i].headline === root.headline)
+            {
+                continue;
+            }
+            sortedText.push(nodes[i].text);
+            sortedHeadlines.push(nodes[i].headline);
+        }
+        console.log(sortedText);
+        console.log(sortedHeadlines);
+
+        for (let i = 0; i < sortedText.length; i++)
+        {
+            story += "\nPage " + (i + 1) + "\n------------------\n" + sortedText[i] + "\n";
+            let nextTwo = tree.getNextTwoHeadlines(sortedHeadlines[i]);
+            console.log(nextTwo);
+            if (nextTwo[0] !== "" && nextTwo[1] !== "") {
+                let firstIndex = sortedHeadlines.indexOf(nextTwo[0]);
+                let secondIndex = sortedHeadlines.indexOf(nextTwo[1]);
+                story += sortedHeadlines[firstIndex] + ": Turn to page " + (firstIndex + 1)
+                    + "\n" + sortedHeadlines[secondIndex] + ": Turn to page " + (secondIndex + 1)
+                    + "\n";
+            }
+        }
+    }
+    return story;
+}
+
 // download code came from
 // https://stackoverflow.com/questions/3665115/how-to-create-a-file-in-memory-for-user-to-download-but-not-through-server
 function download(filename, text)
@@ -40,7 +81,12 @@ function download(filename, text)
     document.body.removeChild(element);
 }
 
-function showStory()
+function showStories()
 {
     alert(gatherStoryTogether());
+}
+
+function showStory()
+{
+    alert(organizeStoryIntoArray());
 }

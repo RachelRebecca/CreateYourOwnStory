@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Add New Page</title>
+    <title>Create Your Own Story</title>
     <script src="js/CreateYourOwnTree.js"></script>
     <script src="js/GatherStoryTogether.js"></script>
     <script src="js/FillInStory.js"></script>
@@ -81,9 +81,13 @@
 <hr>
 
 <form id="displayStory">
-    <input type="button" id="viewStory" value="View Current Stories" onclick="showStory()">
-    <input type="button" id="downloadStory" value="Download Current Stories"
-           onclick="download('story.txt', gatherStoryTogether())">
+    <input type="button" id="viewStories" value="View Current Stories" onclick="showStories()">
+    <input type="button" id="downloadStories" value="Download Current Stories"
+           onclick="download('stories.txt', gatherStoryTogether())">
+    <input type="button" id="viewStory" value="View Sample Story" onclick="showStory()">
+    <input type="button" id="downloadStory" value="Download Sample Story"
+           onclick="download('story.txt', organizeStoryIntoArray())">
+
 </form>
 </body>
 </html>
