@@ -1,4 +1,5 @@
-function compare(a, b) {
+function compare(a, b)
+{
     const pathA = a.nodePath.split(" ");
     const pathB = b.nodePath.split(" ");
 
@@ -12,7 +13,8 @@ function compare(a, b) {
 }
 
 
-function insertNewTreeElement(pageBeforeHeadline, headline, text) {
+function insertNewTreeElement(pageBeforeHeadline, headline, text)
+{
     console.log("Page before headline: " + pageBeforeHeadline + " headline: " + headline + " text: " + text);
 
     if (pageBeforeHeadline === "") {
@@ -35,22 +37,25 @@ function insertNewTreeElement(pageBeforeHeadline, headline, text) {
 function getPreviousHeadline(headlines, thisPageHeadline)
 {
     let previousHeadline;
-    for (let i = 0; i < headlines.length; i++)
-    {
-        if (headlines[i].split("|")[1] === thisPageHeadline)
-        {
+    for (let i = 0; i < headlines.length; i++) {
+        if (headlines[i].split("|")[1] === thisPageHeadline) {
             previousHeadline = headlines[i].split("|")[0];
             break;
         }
     }
+    if (previousHeadline === null || previousHeadline === undefined) {
+        return "";// i.e. not found because page is root
+    }
     return previousHeadline;
 }
 
-function doOnSubmit() {
+function doOnSubmit()
+{
     let element = document.getElementById("thisPageHeadline");
     let index = element.selectedIndex;
     let selectedOption = element.options[index];
     let thisPageHeadline = selectedOption.label;
+    let storyText = document.getElementById("text").value;
 
     if (document.getElementById("doesThisContinue").checked) {
         let headline1 = prompt("Enter the headline for the first of the next two pages: ");
@@ -80,17 +85,27 @@ function doOnSubmit() {
         sessionStorage.setItem("headlines", JSON.stringify(headlines));
 
         let previousHeadline = getPreviousHeadline(headlines, thisPageHeadline);
-        if (previousHeadline === null || previousHeadline === undefined){ // i.e. not found because page is root
-            insertNewTreeElement("", thisPageHeadline, document.getElementById("text").value)
-        }
-        else {
-            insertNewTreeElement(previousHeadline, thisPageHeadline, document.getElementById("text").value);
-        }
+        insertNewTreeElement(previousHeadline, thisPageHeadline, storyText);
     } else {
+        // don't add any new headlines
+
         let headlines = JSON.parse(sessionStorage.getItem("headlines"))
-        let previousHeadline = getPreviousHeadline(headlines, thisPageHeadline);
-        insertNewTreeElement(previousHeadline, thisPageHeadline, document.getElementById("text").value);
-        insertNewTreeElement(thisPageHeadline, tree.END, "");
+        let previousHeadline = "";
+        if (headlines !== null) { // if there are no headlines, this is the root, so there are no pages yet.
+            previousHeadline = getPreviousHeadline(headlines, thisPageHeadline);
+        }
+        let dropdownValues = JSON.parse(sessionStorage.getItem("dropdownValues"));
+        // remove this page from dropdowns
+        if (dropdownValues !== null) {
+            const index = dropdownValues.indexOf(thisPageHeadline);
+            if (index > -1) { // only splice array when item is found
+                dropdownValues.splice(index, 1); // 2nd parameter means remove one item only
+            }
+        }
+        sessionStorage.setItem("dropdownValues", JSON.stringify(dropdownValues));
+        sessionStorage.setItem("headlines", JSON.stringify(headlines));
+
+        insertNewTreeElement(previousHeadline, thisPageHeadline, storyText + "\n" + tree.END);
     }
 
     let nodes = tree.getAllNodes();
