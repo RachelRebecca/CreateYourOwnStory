@@ -58,7 +58,10 @@ function organizeStoryIntoArray()
                 let secondIndex = sortedHeadlines.indexOf(nextTwo[1]);
                 story += sortedHeadlines[firstIndex] + ": Turn to page " + (firstIndex + 1)
                     + "\n" + sortedHeadlines[secondIndex] + ": Turn to page " + (secondIndex + 1)
-                    + "\n";
+                    + "\f";
+            }
+            else {
+                story+="\f";
             }
         }
     }
