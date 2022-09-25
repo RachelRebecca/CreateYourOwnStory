@@ -1,7 +1,41 @@
+body {
+    background-color: silver;
+    align-content: center;
+}
+
+.inner-column {
+    margin: 10px 50px;
+    width: 70%;
+    height: 100%;
+    background-color: white;
+}
+
 nav img{
     float: left;
     size: auto;
     border-radius: 50%;
+}
+
+
+.logo-image{
+    float: top;
+    text-align: center;
+    width: 100%;
+    height: 300px;
+    margin: 0 1.5% 0 0;
+}
+
+.logo-image img{
+    height: 300px;
+    width: 100%;
+}
+
+aside.nav-aside {
+    margin: 50px;
+    float: left;
+    height: inherit;
+    width: 400px;
+    text-align: justify;
 }
 
 textarea {
