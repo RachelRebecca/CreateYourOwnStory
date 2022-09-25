@@ -12,7 +12,7 @@ body {
 aside.nav-aside {
     float: top;
     margin: 50px;
-    height: 250px;
+    height: 150px;
     text-align: justify;
     border-radius: 5px;
     border-color: black;
@@ -32,8 +32,19 @@ aside.nav-aside li {
     background-color: silver;
 }
 
-aside.nav-aside li{
+nav > div > li > a:link {
+    color: black;
+    text-decoration: none;
+}
 
+nav > div > li > a:visited {
+    color: black;
+    text-decoration: underline;
+}
+
+nav > div > li > a:hover, nav > ul > li > a:active {
+    color: rebeccapurple;
+    text-decoration: underline;
 }
 
 .logo-image img{
@@ -45,6 +56,19 @@ aside.nav-aside li{
     border-radius: 50%;
 }
 
+.logo-image h1{
+    font-family: Baskerville, sans-serif;
+    text-shadow: 2px 2px silver;
+    float: left;
+    size: 15px;
+    text-align: center;
+    margin: 3.5%;
+}
+
+
+form{
+    text-align: center;
+}
 
 nav div {
     float: left;
