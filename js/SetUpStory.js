@@ -11,7 +11,7 @@ if (sessionStorage.getItem('nodes') !== null) {
 
 let root;
 if (sessionStorage.getItem('root') === null) {
-    root = prompt("Insert headline for the first, root page");
+    root = "Once Upon a Time";
     sessionStorage.setItem('root', root);
 } else {
     root = sessionStorage.getItem('root');

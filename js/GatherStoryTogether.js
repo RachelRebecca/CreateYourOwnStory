@@ -47,7 +47,10 @@ function organizeStoryIntoArray()
         console.log(sortedHeadlines);
 
         for (let i = 0; i < sortedText.length; i++) {
-            story += "\nPage " + (i + 1) + "\n------------------\n" + sortedText[i] + "\n";
+            story += "\nPage " + (i + 1) +
+                "\n------------------\n" +
+                (i === 0 ? sessionStorage.getItem("root") + "\n" : "") +
+                sortedText[i] + "\n";
             let nextTwo = tree.getNextTwoHeadlines(sortedHeadlines[i]);
             console.log(nextTwo);
             if (nextTwo[0] !== "" && nextTwo[1] !== "") {

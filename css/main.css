@@ -1,0 +1,10 @@
+nav img{
+    float: left;
+    size: auto;
+    border-radius: 50%;
+}
+
+textarea {
+    height: 450px;
+    width: 500px;
+}
