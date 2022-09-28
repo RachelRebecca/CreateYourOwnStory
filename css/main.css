@@ -27,7 +27,7 @@ aside.nav-aside li {
     max-width: 600px;
     width: 500px;
     text-align: center;
-    font-family: Baskerville, sans-serif;
+    font-family: Baskerville, serif;
     font-style: italic;
     background-color: silver;
 }
@@ -57,7 +57,7 @@ nav > div > li > a:hover, nav > ul > li > a:active {
 }
 
 .logo-image h1{
-    font-family: Baskerville, sans-serif;
+    font-family: Baskerville, serif;
     text-shadow: 2px 2px silver;
     float: left;
     size: 15px;
