@@ -18,7 +18,7 @@ aside.nav-aside {
     border-color: black;
 }
 
-aside.nav-aside li {
+aside.nav-aside > nav > div > a {
     color: black;
     display: table-cell;
     margin-left: auto;
@@ -32,17 +32,17 @@ aside.nav-aside li {
     background-color: silver;
 }
 
-nav > div > li > a:link {
+nav > div > a:link {
     color: black;
     text-decoration: none;
 }
 
-nav > div > li > a:visited {
+nav > div  > a:visited {
     color: black;
     text-decoration: underline;
 }
 
-nav > div > li > a:hover, nav > ul > li > a:active {
+nav > div > a:hover, nav > div > a:active {
     color: rebeccapurple;
     text-decoration: underline;
 }
@@ -77,4 +77,13 @@ nav div {
 textarea {
     height: 450px;
     width: 500px;
+}
+
+.carousel {
+    width:300px;
+    height:200px;
+}
+.carousel-control.left, .carousel-control.right {
+    left: 0;
+    z-index: 1;
 }
