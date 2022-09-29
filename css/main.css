@@ -80,8 +80,9 @@ textarea {
 }
 
 .carousel {
-    width:300px;
-    height:200px;
+    width:500px;
+    height:400px;
+    margin: auto;
 }
 .carousel-control.left, .carousel-control.right {
     left: 0;
