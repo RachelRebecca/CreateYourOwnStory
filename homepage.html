@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible">
     <title>Create Your Own Story: Home</title>
     <link href="css/normalize.css" rel="stylesheet">
     <link href="img/favicon.ico" rel="icon">
@@ -25,22 +26,27 @@
     <link href="css/main.css" rel="stylesheet">
 </head>
 <body>
-<aside class="nav-aside">
-<nav>
-    <aside class="logo-image">
-        <a href="homepage.html"><img src="img/logo.png" alt="logo"></a>
-        <h1>CREATE YOUR OWN STORY</h1>
-    </aside>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div>
-        <a href="homepage.html">Home</a>
-        <a href="generateTitle.html">Create Your Own Title</a>
-        <a href="generateUser.html">Create Your Own Main Character</a>
-        <a href="writeStory.html">Create Your Own Story</a>
-        <a href="manual.html">How To Use the Website</a>
+    <a class="navbar-brand" href="homepage.html">
+        <img src="img/logo.png" alt="logo" style="width: 50%; border-radius: 50%; margin: 0 1.5% 0 0;">
+        <h1>Create Your Own Story</h1>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
     </div>
-    <hr/>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+            <a class="nav-item nav-link active" href="homepage.html">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link" href="generateTitle.html">Create Your Own Title</a>
+            <a class="nav-item nav-link" href="generateUser.html">Create Your Own Main Character</a>
+            <a class="nav-item nav-link" href="writeStory.html">Create Your Own Story</a>
+            <a class="nav-item nav-link" href="manual.html">How To Use the Website</a>
+        </div>
+    </div>
 </nav>
-</aside>
 
 <div class="container" style="justify-self: center">
     <div id="homepageSlideshow" class="carousel slide" data-ride="carousel" style="align-content: center">
