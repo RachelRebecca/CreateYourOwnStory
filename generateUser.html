@@ -22,6 +22,9 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
             crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
     <link href="css/main.css" rel="stylesheet">
 </head>
 <body>
@@ -66,18 +69,76 @@
             $("#fileUpload").change(function (event)
             {
                 let x = URL.createObjectURL(event.target.files[0]);
-                $("#uploadedImage").attr("src", x);
+                sessionStorage.setItem("user", x);
+                $("#uploadedImage").attr("src", sessionStorage.getItem("user"));
                 console.log(event);
             })
         })
     </script>
-
-    <div class="align-content-center" style="margin: auto; text-align: center">
-        <label for="backstory">Enter main character backstory</label>
-        <br/>
-        <textarea id="backstory"></textarea>
-    </div>
 </div>
+
+
+
+
+<?php session_start(); include 'header.php'; ?>
+<link rel="stylesheet" type="text/css" href="css/form_styles.css">
+<script type="text/javascript">
+    function inputtedName()
+    {
+        return $("#name").val().length!==0;
+    }
+
+    function dateSelected()
+    {
+        return $("#datepicker").val().length !== 0;
+    }
+    function formIsReadyToSubmit()
+    {
+        if(inputtedName() && dateSelected())
+        {
+            $("#submit").attr('disabled',false);
+        } else {
+            $("#submit").attr('disabled',true);
+        }
+    }
+
+</script>
+<h2 class="dropdown-header" style="text-align: center">Create Main Character Profile</h2>
+<section class="clearfix">
+    <div class="clearfix">
+        <div class="form-group">
+            <form name="mainCharacterForm" style="padding: 10px; background-color: #e5e5e5;" class="clearfix">
+                <div class="form-group form-switch">
+                    <input pattern="[A-Za-z0-9\s]+" type="text" placeholder="Enter Character Name" id="name" name="name"
+                           class="border-1 input-group" style="text-align: center; margin: auto; border: 30px white solid;
+                           width: 450px;" required="" onchange="formIsReadyToSubmit()">
+                </div>
+                <div class="form-group form-switch" style="text-align: center; margin: auto;">
+                    <label for="characterImageUpload">Upload Character Profile Image</label>
+                    <br/>
+                    <input id="characterImageUpload" type="file" accept="image/png, image/jpeg, image/jpg" style="text-align: center; margin: auto;">
+                </div>
+                <div class="form-group form-switch">
+                    <textarea id="backstory" class="align-content-center" onchange="formIsReadyToSubmit()"
+                              style="margin: auto; text-align: center">Enter Character Backstory</textarea>
+                </div>
+                <div class="form-group form-switch">
+                    <input type="text" placeholder="Enter Character Birthday" required="" onchange="formIsReadyToSubmit()"
+                    id="datepicker" style="width: 450px;">
+                    <script>
+                        $( function() {
+                            $( "#datepicker" ).datepicker();
+                        } );
+                    </script>
+                </div>
+                <div class="align-content-center form-group btn-close-white">
+                    <input class="btn btn-info" type="submit" id="submit" name="submit" value="NEXT" disabled> </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+
 
 </body>
 <footer class="text-center font-italic font-weight-light" style="background-color: rgba(0, 0, 0, 0.2); color: white;">

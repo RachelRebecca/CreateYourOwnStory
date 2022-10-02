@@ -61,7 +61,8 @@
     $(function () {
         $("#titleUpload").change(function (event) {
             let x = URL.createObjectURL(event.target.files[0]);
-            $("#uploadedTitle").attr("src", x);
+            sessionStorage.setItem("title", x);
+            $("#uploadedTitle").attr("src", sessionStorage.getItem("title"));
             console.log(event);
         })
     })
