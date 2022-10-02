@@ -47,24 +47,34 @@
         </div>
     </div>
 </nav>
-<div class="profileImageCard">
-    <div class="profileImage">
-        <img src="img/Profile.jpg" id="uploadedImage">
-        <span>
-             <label for="fileUpload">Upload Main Character Profile Image</label>
-            <input id="fileUpload" type="file" accept="image/png, image/jpeg, image/jpg">
-        </span>
-    </div>
 
-    <script>
-        $(function () {
-            $("#fileUpload").change(function (event) {
-                let x = URL.createObjectURL(event.target.files[0]);
-                $("#uploadedImage").attr("src", x);
-                console.log(event);
-            })
+
+<div class="card imageCard" style="width: 50%; margin: auto;">
+    <div class="card-body" style="text-align: center;">
+        <h5 class="card-title">Main Character Profile Image</h5>
+        <div class="profileImage">
+            <img src="img/Profile.jpg" id="uploadedImage" alt="profile image">
+            <input id="fileUpload" type="file" accept="image/png, image/jpeg, image/jpg">
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $("#fileUpload").change(function (event) {
+            let x = URL.createObjectURL(event.target.files[0]);
+            $("#uploadedImage").attr("src", x);
+            console.log(event);
         })
-    </script>
+    })
+</script>
+
+<div class="align-content-center" style="margin: auto">
+    <label for="backstory">Enter main character backstory</label>
+    <br/>
+    <textarea id="backstory"></textarea>
+</div>
+
 </div>
 </body>
 <footer class="text-center font-italic font-weight-light" style="background-color: rgba(0, 0, 0, 0.2); color: white;">

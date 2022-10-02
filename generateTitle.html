@@ -31,7 +31,8 @@
             <img src="img/logo.png" alt="logo" style="width: 50%; border-radius: 50%; margin: 0 1.5% 0 0;">
             <h1>Create Your Own Story</h1>
         </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
     </div>
@@ -45,6 +46,28 @@
         </div>
     </div>
 </nav>
+
+<div class="card imageCard" style="width: 50%; margin: auto;">
+    <div class="card-body" style="text-align: center;">
+        <h5 class="card-title">Cover Image</h5>
+        <div class="titleImage">
+            <img src="img/logo.png" id="uploadedTitle" alt="cover image">
+            <input id="titleUpload" type="file" accept="image/png, image/jpeg, image/jpg">
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $("#titleUpload").change(function (event) {
+            let x = URL.createObjectURL(event.target.files[0]);
+            $("#uploadedTitle").attr("src", x);
+            console.log(event);
+        })
+    })
+</script>
+</div>
+
 </body>
 <footer class="text-center font-italic font-weight-light" style="background-color: rgba(0, 0, 0, 0.2); color: white;">
     <div class="h4">

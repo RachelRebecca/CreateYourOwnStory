@@ -42,7 +42,7 @@ textarea {
     width: 75% !important;
 }
 
-.profileImageCard{
+.imageCard{
     margin: auto;
     width: 50%;
     height: 50%;
@@ -51,7 +51,7 @@ textarea {
     box-shadow: 0 0 15px 0;
 }
 
-#uploadedImage {
+#uploadedImage, #uploadedTitle {
     text-align: center;
     margin: auto;
     border-radius: 50%;
