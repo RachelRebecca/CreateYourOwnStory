@@ -77,11 +77,6 @@
     </script>
 </div>
 
-
-
-
-<?php session_start(); include 'header.php'; ?>
-<link rel="stylesheet" type="text/css" href="css/form_styles.css">
 <script type="text/javascript">
     function inputtedName()
     {
@@ -103,6 +98,9 @@
     }
 
 </script>
+
+<script src="js/GatherStoryTogether.js"></script>
+
 <h2 class="dropdown-header" style="text-align: center">Create Main Character Profile</h2>
 <section class="clearfix">
     <div class="clearfix">
@@ -132,7 +130,7 @@
                     </script>
                 </div>
                 <div class="align-content-center form-group btn-close-white">
-                    <input class="btn btn-info" type="submit" id="submit" name="submit" value="NEXT" disabled> </div>
+                    <input class="btn btn-info" type="submit" onsubmit="doOnUserSubmit()" id="submit" name="submit" value="NEXT" disabled> </div>
             </form>
         </div>
     </div>

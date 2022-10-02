@@ -84,6 +84,35 @@ function download(filename, text)
     document.body.removeChild(element);
 }
 
+function gatherProfileTogether()
+{
+    let text = sessionStorage.getItem("user");
+    if (text === null)
+    {
+        text = "";
+    }
+    text += "\n" + sessionStorage.getItem("userName");
+    text += "\n" + sessionStorage.getItem("userBirthday");
+    text += "\n" + sessionStorage.getItem("userAge");
+    text += "\n" + sessionStorage.getItem("userBackstory");
+
+    return text;
+
+}
+
+function doOnUserSubmit()
+{
+    sessionStorage.setItem("userName", $("#name").val());
+    sessionStorage.setItem("userBirthday", $("#datepicker").val())
+    let birthday = new Date(sessionStorage.getItem("userBirthday"));
+    let today = new Date();
+    let age = today.getFullYear() - birthday.getFullYear();
+    sessionStorage.setItem("userAge", age + "");
+    sessionStorage.setItem("userBackstory", $("#backstory").val());
+
+    download("user.txt", gatherProfileTogether());
+}
+
 function showStories()
 {
     alert(gatherStoryTogether());
