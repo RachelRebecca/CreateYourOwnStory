@@ -41,3 +41,22 @@ textarea {
     margin: auto;
     width: 75% !important;
 }
+
+.profileImageCard{
+    margin: auto;
+    width: 50%;
+    height: 50%;
+    background-color: rgba(0, 0, 0, .1);
+    text-align: center;
+    box-shadow: 0 0 15px 0;
+}
+
+#uploadedImage {
+    text-align: center;
+    margin: auto;
+    border-radius: 50%;
+    width: 300px;
+    height: 300px;
+    box-sizing: border-box;
+    max-width: 90%;
+}
