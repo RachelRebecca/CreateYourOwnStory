@@ -53,8 +53,8 @@
 
 
 <div class="container">
-    <div class="card imageCard" style="width: 50%; margin: auto;">
-        <div class="card-body" style="text-align: center;">
+    <div class="card imageCard">
+        <div class="card-body text-center">
             <h5 class="card-title">Main Character Profile Image</h5>
             <div class="profileImage">
                 <img src="img/Profile.jpg" id="uploadedImage" alt="profile image">
@@ -101,24 +101,22 @@
 
 <script src="js/GatherStoryTogether.js"></script>
 
-<h2 class="dropdown-header" style="text-align: center">Create Main Character Profile</h2>
+<h2 class="dropdown-header text-center">Create Main Character Profile</h2>
 <section class="clearfix">
     <div class="clearfix">
         <div class="form-group">
             <form name="mainCharacterForm" style="padding: 10px; background-color: #e5e5e5;" class="clearfix">
                 <div class="form-group form-switch">
                     <input pattern="[A-Za-z0-9\s]+" type="text" placeholder="Enter Character Name" id="name" name="name"
-                           class="border-1 input-group" style="text-align: center; margin: auto; border: 30px white solid;
-                           width: 450px;" required="" onchange="formIsReadyToSubmit()">
+                           class="border-1 input-group text-center container" style="border: 30px white solid; width: 450px;" required="" onchange="formIsReadyToSubmit()">
                 </div>
-                <div class="form-group form-switch" style="text-align: center; margin: auto;">
+                <div class="form-group form-switch text-center container">
                     <label for="characterImageUpload">Upload Character Profile Image</label>
                     <br/>
                     <input id="characterImageUpload" type="file" accept="image/png, image/jpeg, image/jpg" style="text-align: center; margin: auto;">
                 </div>
                 <div class="form-group form-switch">
-                    <textarea id="backstory" class="align-content-center" onchange="formIsReadyToSubmit()"
-                              style="margin: auto; text-align: center">Enter Character Backstory</textarea>
+                    <textarea id="backstory" class="align-content-center text-center" onchange="formIsReadyToSubmit()">Enter Character Backstory</textarea>
                 </div>
                 <div class="form-group form-switch">
                     <input type="text" placeholder="Enter Character Birthday" required="" onchange="formIsReadyToSubmit()"
