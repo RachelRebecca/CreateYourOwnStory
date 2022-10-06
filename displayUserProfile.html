@@ -53,20 +53,23 @@
     </div>
 </nav>
 
-<script>
-    window.onload = new function () {
-        let dataImage = localStorage.getItem('imgData');
-        let bannerImg = document.getElementById('uploadedImage');
-        bannerImg.src = "data:image/png;base64," + dataImage;
-    }
-</script>
-
 <div class="container">
     <div class="card imageCard">
         <div class="card-body text-center">
             <h5 class="card-title">Main Character Profile Image</h5>
             <div class="profileImage">
                 <img id="uploadedImage" src="" alt="profile image">
+                <script>
+                    window.addEventListener("load", event => {
+                        let image = document.querySelector('img');
+                        let isLoaded = image.complete && image.naturalHeight !== 0;
+                        if (isLoaded)
+                        {
+                            let dataImage = localStorage.getItem('imgData');
+                            $("#uploadedImage").attr("src", "data:image/png;base64," + dataImage)
+                        }
+                    });
+                </script>
             </div>
         </div>
     </div>

@@ -91,17 +91,25 @@
                     <br/>
                     <input id="characterImageUpload" type="file" name="file" accept="image/png, image/jpeg, image/jpg"
                            style="text-align: center; margin: auto;">
+                    <img src="img/Profile.jpg" id="uploadedUserImage" alt="cover image" style="display:none">
+
                     <script>
                         $(function () {
                             $("#characterImageUpload").change(function (event) {
                                 {
-                                    let profileImage = document.getElementById('characterImageUpload');
+                                    let x = URL.createObjectURL(event.target.files[0]);
+                                    console.log(x);
+                                    $("#uploadedUserImage").attr("src", x);
+
+                                    let profileImage = document.getElementById('uploadedUserImage');
+                                    console.log("profile image:" + profileImage)
                                     let imgData = getBase64Image(profileImage);
                                     localStorage.setItem("imgData", imgData);
                                 }
                             })
 
                             function getBase64Image(img) {
+                                console.log(img);
                                 let canvas = document.createElement("canvas");
                                 canvas.width = img.width;
                                 canvas.height = img.height;
