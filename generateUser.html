@@ -28,7 +28,6 @@
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
     <link href="css/main.css" rel="stylesheet">
-    <script src="js/GatherStoryTogether.js"></script>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -55,8 +54,19 @@
 </nav>
 
 <script type="text/javascript">
+    // Form Validation (all fields are required):
+
+
     function inputtedName() {
         return $("#name").val().length !== 0;
+    }
+
+    function imageUploaded() {
+        return document.getElementById("characterImageUpload").files.length !== 0;
+    }
+
+    function backstoryRecorded() {
+        return $("#backstory").val().length !== 0;
     }
 
     function dateSelected() {
@@ -64,7 +74,7 @@
     }
 
     function formIsReadyToSubmit() {
-        if (inputtedName() && dateSelected()) {
+        if (inputtedName() && imageUploaded() && backstoryRecorded() && dateSelected()) {
             $("#submit").attr('disabled', false);
         } else {
             $("#submit").attr('disabled', true);
@@ -73,44 +83,50 @@
 
 </script>
 
-<script src="js/GatherStoryTogether.js"></script>
-
 <h2 class="dropdown-header text-center">Create Main Character Profile</h2>
 <section class="clearfix">
     <div class="clearfix">
         <div class="form-group">
             <form name="mainCharacterForm" method="get" action="displayUserProfile.html"
-                  style="padding: 10px; background-color: #e5e5e5;" class="clearfix">
+                  style="padding: 10px; background-color: #e5e5e5;" class="clearfix" onsubmit="saveFields()">
                 <div class="form-group form-switch">
-                    <input pattern="[A-Za-z0-9\s]+" type="text" placeholder="Enter Character Name" id="name"
-                           class="border-1 input-group text-center container"
-                           style="border: 30px white solid; width: 450px;" required="" onchange="formIsReadyToSubmit()">
+                    <input type="text" placeholder="Enter Character Name" id="name"
+                           class="border-1 input-group text-center container" name="characterName"
+                           style="border: 30px white solid; width: 450px;" required="required" onchange="formIsReadyToSubmit()">
                 </div>
                 <div class="form-group form-switch text-center container">
                     <label for="characterImageUpload">Upload Character Profile Image</label>
                     <br/>
-                    <input id="characterImageUpload" type="file" name="file" accept="image/png, image/jpeg, image/jpg"
-                           style="text-align: center; margin: auto;">
+                    <input id="characterImageUpload" type="file" accept="image/png, image/jpeg, image/jpg"
+                           style="text-align: center; margin: auto;" required="required">
                     <img src="img/Profile.jpg" id="uploadedUserImage" alt="cover image" style="display:none">
 
                     <script>
                         $(function () {
                             $("#characterImageUpload").change(function (event) {
                                 {
-                                    let x = URL.createObjectURL(event.target.files[0]);
-                                    $("#uploadedUserImage").attr("src", x);
-                                    sessionStorage.setItem("profileImage", x);
+                                    if (event.target.files.length > 0) {
+                                        let x = URL.createObjectURL(event.target.files[0]);
+                                        $("#uploadedUserImage").attr("src", x);
+                                        sessionStorage.setItem("profileImage", x);
+                                    } else {
+                                        sessionStorage.setItem("profileImage", null);
+                                    }
                                 }
+
+                                formIsReadyToSubmit();
                             })
                         });
                     </script>
 
                 </div>
                 <div class="form-group form-switch">
-                    <textarea id="backstory" class="align-content-center text-center" onchange="formIsReadyToSubmit()">Enter Character Backstory</textarea>
+                    <textarea id="backstory" name="backstory" required="required"
+                              class="align-content-center text-center"
+                              onchange="formIsReadyToSubmit()">Enter Character Backstory</textarea>
                 </div>
                 <div class="form-group form-switch">
-                    <input type="text" placeholder="Enter Character Birthday" required=""
+                    <input type="text" placeholder="Enter Character Birthday" required="required"
                            onchange="formIsReadyToSubmit()"
                            id="datepicker" style="width: 450px;">
                     <script>
@@ -120,14 +136,30 @@
                     </script>
                 </div>
                 <div class="align-content-center form-group btn-close-white">
-                    <input class="btn btn-light text-center" type="submit" onsubmit="doOnUserSubmit()" id="submit" name="submit"
+                    <input class="btn btn-light text-center" type="submit" id="submit"
                            value="NEXT" disabled></div>
             </form>
         </div>
     </div>
 </section>
+<script>
+    function saveFields() {
+        sessionStorage.setItem("userBirthday", $("#datepicker").val())
+        let birthday = new Date(sessionStorage.getItem("userBirthday"));
+        let today = new Date();
+        let age = today.getFullYear() - birthday.getFullYear(); // calculate based on input
+        sessionStorage.setItem("userAge", age + "");
 
+        sessionStorage.setItem("characterName", $("#name").val());
 
+        sessionStorage.setItem("backstory", $("#backstory").val());
+
+        console.log(birthday);
+        console.log(age);
+
+        $("#mainCharacterForm").submit();
+    }
+</script>
 </body>
 <footer class="text-center font-italic font-weight-light" style="background-color: rgba(0, 0, 0, 0.2); color: white;">
     <div class="h4">

@@ -33,11 +33,22 @@
             </div>
         </div>
     </div>
+    <div>
+        <script>
+            document.writeln(sessionStorage.getItem("characterName") + "<br>");
+            document.writeln(sessionStorage.getItem("userBirthday") + "<br>");
+            document.writeln(sessionStorage.getItem("userAge") + "<br>");
+            document.writeln(sessionStorage.getItem("backstory") + "<br>");
+        </script>
+    </div>
 </div>
 
-<button class="btn btn-info" id="printPageButton" onclick="printProfilePage()">Print Page</button>
-<button class="btn btn-info" id="returnToCreateUserProfilePageButton" onclick="returnToUserProfilePage()">Go Back</button>
-<button class="btn btn-info" id="startWritingButton" onclick="returnToWriteStoryPage()">Start Writing Story</button>
+<div class="align-content-center form-group btn-close-white" style="margin: auto">
+    <button class="btn btn-light text-center" id="printPageButton" onclick="printProfilePage()">Print Page</button>
+    <button class="btn btn-light text-center" id="returnToCreateUserProfilePageButton" onclick="returnToUserProfilePage()">Go Back
+    </button>
+    <button class="btn btn-light text-center" id="startWritingButton" onclick="returnToWriteStoryPage()">Start Writing Story</button>
+</div>
 
 
 <script>
@@ -57,13 +68,11 @@
         writeStoryButton.style.visibility = 'visible';
     }
 
-    function returnToUserProfilePage()
-    {
+    function returnToUserProfilePage() {
         location.href = "generateUser.html";
     }
 
-    function returnToWriteStoryPage()
-    {
+    function returnToWriteStoryPage() {
         location.href = "writeStory.html";
     }
 </script>

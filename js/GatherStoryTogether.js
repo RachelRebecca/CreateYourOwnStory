@@ -68,52 +68,6 @@ function organizeStoryIntoArray()
     return story;
 }
 
-// download code came from
-// https://stackoverflow.com/questions/3665115/how-to-create-a-file-in-memory-for-user-to-download-but-not-through-server
-function download(filename, text)
-{
-    let element = document.createElement('a');
-    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
-    element.setAttribute('download', filename);
-
-    element.style.display = 'none';
-    document.body.appendChild(element);
-
-    element.click();
-
-    document.body.removeChild(element);
-}
-
-function gatherProfileTogether()
-{
-    let text = sessionStorage.getItem("user");
-    if (text === null)
-    {
-        text = "";
-    }
-    text += "\n" + sessionStorage.getItem("userName");
-    text += "\n" + sessionStorage.getItem("userBirthday");
-    text += "\n" + sessionStorage.getItem("userAge");
-    text += "\n" + sessionStorage.getItem("userBackstory");
-
-    return text;
-
-}
-
-function doOnUserSubmit()
-{
-    sessionStorage.setItem("userName", $("#name").val());
-    sessionStorage.setItem("userBirthday", $("#datepicker").val())
-    let birthday = new Date(sessionStorage.getItem("userBirthday"));
-    let today = new Date();
-    let age = today.getFullYear() - birthday.getFullYear(); // calculate based on input
-    sessionStorage.setItem("userAge", age + "");
-    sessionStorage.setItem("userBackstory", $("#backstory").val());
-
-    $("mainCharacterForm").submit();
-    download("user.txt", gatherProfileTogether());
-}
-
 function showStories()
 {
     alert(gatherStoryTogether());
