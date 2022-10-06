@@ -106,10 +106,11 @@ function doOnUserSubmit()
     sessionStorage.setItem("userBirthday", $("#datepicker").val())
     let birthday = new Date(sessionStorage.getItem("userBirthday"));
     let today = new Date();
-    let age = today.getFullYear() - birthday.getFullYear();
+    let age = today.getFullYear() - birthday.getFullYear(); // calculate based on input
     sessionStorage.setItem("userAge", age + "");
     sessionStorage.setItem("userBackstory", $("#backstory").val());
 
+    $("mainCharacterForm").submit();
     download("user.txt", gatherProfileTogether());
 }
 
