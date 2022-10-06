@@ -60,15 +60,7 @@
             <div class="profileImage">
                 <img id="uploadedImage" src="" alt="profile image">
                 <script>
-                    window.addEventListener("load", event => {
-                        let image = document.querySelector('img');
-                        let isLoaded = image.complete && image.naturalHeight !== 0;
-                        if (isLoaded)
-                        {
-                            let dataImage = localStorage.getItem('imgData');
-                            $("#uploadedImage").attr("src", "data:image/png;base64," + dataImage)
-                        }
-                    });
+                    $("#uploadedImage").attr("src", sessionStorage.getItem("profileImage"));
                 </script>
             </div>
         </div>

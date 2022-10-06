@@ -101,27 +101,9 @@
                                     console.log(x);
                                     $("#uploadedUserImage").attr("src", x);
 
-                                    let profileImage = document.getElementById('uploadedUserImage');
-                                    console.log("profile image:" + profileImage)
-                                    let imgData = getBase64Image(profileImage);
-                                    localStorage.setItem("imgData", imgData);
-                                }
-                            })
-
-                            function getBase64Image(img) {
-                                console.log(img);
-                                let canvas = document.createElement("canvas");
-                                canvas.width = img.width;
-                                canvas.height = img.height;
-
-                                let ctx = canvas.getContext("2d");
-                                ctx.drawImage(img, 0, 0);
-
-                                let dataURL = canvas.toDataURL("image/png");
-
-                                return dataURL.replace(/^data:image\/(png|jpg|jpeg);base64,/, "");
-                            }
-                        });
+                                    sessionStorage.setItem("profileImage", x);
+                                    console.log(sessionStorage.getItem("profileImage"));
+                                }})});
                     </script>
 
                 </div>
