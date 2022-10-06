@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Main Character Profile</title>
+    <title>Title Page</title>
     <link href="css/normalize.css" rel="stylesheet">
     <link href="img/favicon.ico" rel="icon">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" media='all'
@@ -19,32 +19,33 @@
     <link href="css/main.css" rel="stylesheet">
 </head>
 <body>
+
 <div class="container" id="mainContents">
     <div class="card imageCard" style="background-color: rgba(0, 0, 0, .1); box-shadow: 0 0 15px 0">
         <div class="card-body text-center">
-            <h5 class="card-title">Main Character Profile Image</h5>
-            <div class="profileImage">
-                <img id="uploadedImage" src="" alt="profile image">
+            <h5 class="card-title">Cover Image</h5>
+            <div class="titleImage">
+                <img id="uploadedTitle" src="" alt="profile image">
                 <script>
-                    let x = sessionStorage.getItem("profileImage");
-                    x = (x === null ? "img/Profile.jpg" : x);
-                    $("#uploadedImage").attr("src", x);
+                    let x = sessionStorage.getItem("coverImage");
+                    x = (x === null ? "img/logo.png" : x);
+                    $("#uploadedTitle").attr("src", x);
                 </script>
             </div>
         </div>
     </div>
 </div>
 
-<button class="btn btn-info" id="printPageButton" onclick="printProfilePage()">Print Page</button>
-<button class="btn btn-info" id="returnToCreateUserProfilePageButton" onclick="returnToUserProfilePage()">Go Back</button>
-<button class="btn btn-info" id="startWritingButton" onclick="returnToWriteStoryPage()">Start Writing Story</button>
+<button class="btn btn-info" id="printTitlePageButton" onclick="printProfilePage()">Print Page</button>
+<button class="btn btn-info" id="returnToCreateTitlePageButton" onclick="returnToUserProfilePage()">Go Back</button>
+<button class="btn btn-info" id="writeStoryButton" onclick="returnToWriteStoryPage()">Start Writing Story</button>
 
 
 <script>
     function printProfilePage() {
-        let printButton = document.getElementById("printPageButton");
-        let returnButton = document.getElementById("returnToCreateUserProfilePageButton");
-        let writeStoryButton = document.getElementById("startWritingButton");
+        let printButton = document.getElementById("printTitlePageButton");
+        let returnButton = document.getElementById("returnToCreateTitlePageButton");
+        let writeStoryButton = document.getElementById("writeStoryButton");
 
         printButton.style.visibility = 'hidden';
         returnButton.style.visibility = 'hidden';
@@ -59,7 +60,7 @@
 
     function returnToUserProfilePage()
     {
-        location.href = "generateUser.html";
+        location.href = "generateTitle.html";
     }
 
     function returnToWriteStoryPage()

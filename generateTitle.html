@@ -47,28 +47,75 @@
     </div>
 </nav>
 
-<div class="card imageCard">
-    <div class="card-body text-center">
-        <h5 class="card-title">Cover Image</h5>
-        <div class="titleImage">
-            <img src="img/logo.png" id="uploadedTitle" alt="cover image">
-            <input id="titleUpload" type="file" accept="image/png, image/jpeg, image/jpg">
+<script type="text/javascript">
+    function inputtedTitle() {
+        return $("#title").val().length !== 0;
+    }
+
+    function uploadedCoverImage() {
+        return $("coverImageUpload").val() !== "";
+    }
+
+    function formIsReadyToSubmit() {
+        if (inputtedTitle() && uploadedCoverImage()) {
+            $("#submit").attr('disabled', false);
+        } else {
+            $("#submit").attr('disabled', true);
+        }
+    }
+
+</script>
+
+<h2 class="dropdown-header text-center">Create Title Page</h2>
+<section class="clearfix">
+    <div class="clearfix">
+        <div class="form-group">
+            <form name="titlePageForm" method="get" action="displayTitlePage.html"
+                  style="padding: 10px; background-color: #e5e5e5;" class="clearfix">
+                <div class="form-group form-switch">
+                    <input pattern="[A-Za-z0-9\s]+" type="text" placeholder="Enter Title" id="title"
+                           class="border-1 input-group text-center container"
+                           style="border: 30px white solid; width: 450px;" required="" onchange="formIsReadyToSubmit()">
+                </div>
+                <div class="form-group form-switch text-center container">
+                    <label for="coverImageUpload">Upload Cover Image</label>
+                    <br/>
+                    <input id="coverImageUpload" type="file" name="file" accept="image/png, image/jpeg, image/jpg"
+                           style="text-align: center; margin: auto;">
+                    <img src="img/logo.png" id="uploadedCoverImage" alt="cover image" style="display:none">
+
+                    <script>
+                        $(function () {
+                            $("#coverImageUpload").change(function (event) {
+                                {
+                                    let x = URL.createObjectURL(event.target.files[0]);
+                                    $("#uploadedCoverImage").attr("src", x);
+                                    sessionStorage.setItem("coverImage", x);
+
+                                    formIsReadyToSubmit();
+                                }
+                            })
+                        });
+                    </script>
+                </div>
+                <div class="align-content-center form-group btn-close-white">
+                    <input class="btn btn-light text-center" type="submit" id="submit" value="NEXT" disabled></div>
+            </form>
         </div>
     </div>
-</div>
 
-<script>
-    $(function () {
-        $("#titleUpload").change(function (event) {
-            let x = URL.createObjectURL(event.target.files[0]);
-            sessionStorage.setItem("title", x);
-            $("#uploadedTitle").attr("src", sessionStorage.getItem("title"));
-            console.log(event);
+    <script>
+        $(function () {
+            $("#titleUpload").change(function (event) {
+                let x = URL.createObjectURL(event.target.files[0]);
+                sessionStorage.setItem("title", x);
+                $("#uploadedTitle").attr("src", sessionStorage.getItem("title"));
+                console.log(event);
+            })
         })
-    })
-</script>
-</div>
-
+    </script>
+    </div>
+</section>
 </body>
 <footer class="text-center font-italic font-weight-light" style="background-color: rgba(0, 0, 0, 0.2); color: white;">
     <div class="h4">
