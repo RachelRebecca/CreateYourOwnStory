@@ -64,10 +64,12 @@
                         get: (searchParams, prop) => searchParams.get(prop),
                     });
                     let value = new File(["img"], params.file, {
-                        type: "image/jpeg, image/jpg, image/png"}); // "some_value
+                        type: "image/jpeg, image/jpg, image/png"});
                     console.log(value);
                     let x = URL.createObjectURL(value);
                     console.log(x);
+
+                    if (params.file === null){ x = "img/Profile.jpg";}
                     $("#uploadedImage").attr("src", x);
                 </script>
             </div>
