@@ -91,16 +91,31 @@
                     <br/>
                     <input id="characterImageUpload" type="file" name="file" accept="image/png, image/jpeg, image/jpg"
                            style="text-align: center; margin: auto;">
-                    <!--<script>
-                             $(function ()
-                             {
-                                 $("#characterImageUpload").change(function (event) {
-                                     let blob = URL.createObjectURL(event.target.files[0]);
-                                     //console.log(URL.createObjectURL(event.target.files[0]));
-                                     sessionStorage.setItem("user", blob);
-                                 })
-                             })
-                         script>-->
+                    <script>
+                        $(function () {
+                            $("#characterImageUpload").change(function (event) {
+                                {
+                                    let profileImage = document.getElementById('characterImageUpload');
+                                    let imgData = getBase64Image(profileImage);
+                                    localStorage.setItem("imgData", imgData);
+                                }
+                            })
+
+                            function getBase64Image(img) {
+                                let canvas = document.createElement("canvas");
+                                canvas.width = img.width;
+                                canvas.height = img.height;
+
+                                let ctx = canvas.getContext("2d");
+                                ctx.drawImage(img, 0, 0);
+
+                                let dataURL = canvas.toDataURL("image/png");
+
+                                return dataURL.replace(/^data:image\/(png|jpg|jpeg);base64,/, "");
+                            }
+                        });
+                    </script>
+
                 </div>
                 <div class="form-group form-switch">
                     <textarea id="backstory" class="align-content-center text-center" onchange="formIsReadyToSubmit()">Enter Character Backstory</textarea>
