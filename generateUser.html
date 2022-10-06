@@ -98,12 +98,11 @@
                             $("#characterImageUpload").change(function (event) {
                                 {
                                     let x = URL.createObjectURL(event.target.files[0]);
-                                    console.log(x);
                                     $("#uploadedUserImage").attr("src", x);
-
                                     sessionStorage.setItem("profileImage", x);
-                                    console.log(sessionStorage.getItem("profileImage"));
-                                }})});
+                                }
+                            })
+                        });
                     </script>
 
                 </div>
@@ -121,7 +120,7 @@
                     </script>
                 </div>
                 <div class="align-content-center form-group btn-close-white">
-                    <input class="btn btn-info" type="submit" onsubmit="doOnUserSubmit()" id="submit" name="submit"
+                    <input class="btn btn-light text-center" type="submit" onsubmit="doOnUserSubmit()" id="submit" name="submit"
                            value="NEXT" disabled></div>
             </form>
         </div>
