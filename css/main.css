@@ -59,3 +59,8 @@ textarea {
     box-sizing: border-box;
     max-width: 90%;
 }
+
+.nav-effect > #navbarNavAltMarkup > div > a:hover{
+    background-color: lightblue;
+    color: white;
+}

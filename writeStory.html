@@ -26,30 +26,35 @@
     <script src="js/GatherStoryTogether.js"></script>
     <script src="js/FillInStory.js"></script>
     <script src="js/download.js"></script>
-    <link href="css/main.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet"> <!-- external stylesheet -->
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div>
-        <a class="navbar-brand" href="homepage.html">
-            <img src="img/logo.png" alt="logo" style="width: 50%; border-radius: 50%; margin: 0 1.5% 0 0;">
-            <h1>Create Your Own Story</h1>
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
-                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-    </div>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
-            <a class="nav-item nav-link" href="homepage.html">Home</a>
-            <a class="nav-item nav-link" href="generateTitle.html">Create Your Own Title</a>
-            <a class="nav-item nav-link" href="generateUser.html">Create Your Own Main Character</a>
-            <a class="nav-item nav-link active" href="writeStory.html">Create Your Own Story <span class="sr-only">(current)</span></a>
-            <a class="nav-item nav-link" href="manual.html">How To Use the Website</a>
+<header>
+    <!-- header, logo, menu -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light nav-effect">
+        <div>
+            <a class="navbar-brand" href="homepage.html">
+                <img src="img/logo.png" alt="logo" style="width: 50%; border-radius: 50%; margin: 0 1.5% 0 0;">
+                <h1>Create Your Own Story</h1>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+                    aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
         </div>
-    </div>
-</nav>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link" href="homepage.html">Home</a>
+                <a class="nav-item nav-link" href="generateTitle.html">Create Your Own Title</a>
+                <a class="nav-item nav-link" href="generateUser.html">Create Your Own Main Character</a>
+                <a class="nav-item nav-link active" href="writeStory.html">Create Your Own Story <span class="sr-only">(current)</span></a>
+                <a class="nav-item nav-link" href="manual.html">How To Use the Website</a>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<!-- Main Contents -->
 
 <form id="createStory">
     <div>
@@ -88,6 +93,8 @@
             location.reload();">
 </form>
 </body>
+
+<!-- Footer -->
 <footer class="text-center font-italic font-weight-light" style="background-color: rgba(0, 0, 0, 0.2); color: white;">
     <div class="h4">
         <br/>
@@ -98,4 +105,6 @@
     </div>
     <br/>
 </footer>
+<!-- End of Footer -->
+
 </html>

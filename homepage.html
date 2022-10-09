@@ -23,31 +23,35 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
             crossorigin="anonymous"></script>
-    <link href="css/main.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet"> <!-- external stylesheet -->
 </head>
 <body>
-
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div>
-        <a class="navbar-brand" href="homepage.html">
-            <img src="img/logo.png" alt="logo" style="width: 50%; border-radius: 50%; margin: 0 1.5% 0 0;">
-            <h1>Create Your Own Story</h1>
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
-                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-    </div>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
-            <a class="nav-item nav-link active" href="homepage.html">Home <span class="sr-only">(current)</span></a>
-            <a class="nav-item nav-link" href="generateTitle.html">Create Your Own Title</a>
-            <a class="nav-item nav-link" href="generateUser.html">Create Your Own Main Character</a>
-            <a class="nav-item nav-link" href="writeStory.html">Create Your Own Story</a>
-            <a class="nav-item nav-link" href="manual.html">How To Use the Website</a>
+<header>
+    <!-- header, logo, menu -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light nav-effect">
+        <div>
+            <a class="navbar-brand" href="homepage.html">
+                <img src="img/logo.png" alt="logo" style="width: 50%; border-radius: 50%; margin: 0 1.5% 0 0;">
+                <h1>Create Your Own Story</h1>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+                    aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
         </div>
-    </div>
-</nav>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link active" href="homepage.html">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-item nav-link" href="generateTitle.html">Create Your Own Title</a>
+                <a class="nav-item nav-link" href="generateUser.html">Create Your Own Main Character</a>
+                <a class="nav-item nav-link" href="writeStory.html">Create Your Own Story</a>
+                <a class="nav-item nav-link" href="manual.html">How To Use the Website</a>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<!-- Main Contents -->
 
 <div class="card" style="width: 100%;">
     <div class="card-body text-center">
@@ -61,59 +65,77 @@
 <div class="accordion" id="homepageAccordion">
     <div class="accordion-item">
         <h2 class="accordion-header" id="headingOne">
-            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+                    aria-expanded="true" aria-controls="collapseOne">
                 Choose a title for your story
             </button>
         </h2>
-        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#homepageAccordion">
+        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+             data-bs-parent="#homepageAccordion">
             <div class="accordion-body">
                 <strong>Coming up with a title page involves two things: </strong>
-                An interesting name for your story as well as a gripping cover image. You can upload this image to our <a href="generateTitle.html">template title page designer</a> and take a screenshot of your title page.
-                We are currently designing this title page as well as capabilities to save a screenshot of your title page using the website.
+                An interesting name for your story as well as a gripping cover image. You can upload this image to our
+                <a href="generateTitle.html">template title page designer</a> and take a screenshot of your title page.
+                We are currently designing this title page as well as capabilities to save a screenshot of your title
+                page using the website.
             </div>
         </div>
     </div>
     <div class="accordion-item">
         <h2 class="accordion-header" id="headingTwo">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                 Design your main character
             </button>
         </h2>
-        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#homepageAccordion">
+        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+             data-bs-parent="#homepageAccordion">
             <div class="accordion-body">
                 <strong>Every "Choose Your Own Adventure" style story contains one important element: YOU! </strong>
-                On <a href="generateUser.html">this main character profile generator page</a> you have the ability to create a profile and backstory for the main character in your story.
-                The choices made by "you" throughout the story will be far more meaningful given a backstory and information of the significant milestones in your life.
-                After all, a story about a 4-year-old who thinks there is a monster under his bed will be very different than an-eleven-year old whose trip on the bus to school takes a very strange turn,
+                On <a href="generateUser.html">this main character profile generator page</a> you have the ability to
+                create a profile and backstory for the main character in your story.
+                The choices made by "you" throughout the story will be far more meaningful given a backstory and
+                information of the significant milestones in your life.
+                After all, a story about a 4-year-old who thinks there is a monster under his bed will be very different
+                than an-eleven-year old whose trip on the bus to school takes a very strange turn,
                 or a thirty-year-old who went on a cruise and was stranded on a desert island...
-                The decision-making in this story begins with you designing that "you" that makes all the decisions in your stories.
+                The decision-making in this story begins with you designing that "you" that makes all the decisions in
+                your stories.
             </div>
         </div>
     </div>
     <div class="accordion-item">
         <h2 class="accordion-header" id="headingThree">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
                 Build your own choose your own adventure story
             </button>
         </h2>
-        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#homepageAccordion">
+        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+             data-bs-parent="#homepageAccordion">
             <div class="accordion-body">
-                <strong>The most important part of writing your own story is ... actually writing your own "Choose Your Own Adventure" style story!</strong>
-                <a href="writeStory.html">This page</a> will actually help you break down your story in manageable parts using individual page headlines to keep you grounded even as the story veers down many different paths.
-                On any given page, you can choose to either continue the story in two different directions, or make this page end its specific story, so that if the reader reaches this page, they've hit a "THE END"
+                <strong>The most important part of writing your own story is ... actually writing your own "Choose Your
+                    Own Adventure" style story!</strong>
+                <a href="writeStory.html">This page</a> will actually help you break down your story in manageable parts
+                using individual page headlines to keep you grounded even as the story veers down many different paths.
+                On any given page, you can choose to either continue the story in two different directions, or make this
+                page end its specific story, so that if the reader reaches this page, they've hit a "THE END"
                 and must start over from the first page.
             </div>
         </div>
     </div>
     <div class="accordion-item">
         <h2 class="accordion-header" id="headingFour">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseThree">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseThree">
                 Use the manual if you need any help
             </button>
         </h2>
-        <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#homepageAccordion">
+        <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
+             data-bs-parent="#homepageAccordion">
             <div class="accordion-body">
-                <strong>If at any point you have any confusion regarding the website, <a href="manual.html">this manual</a> is there to help!</strong>
+                <strong>If at any point you have any confusion regarding the website, <a href="manual.html">this
+                    manual</a> is there to help!</strong>
                 You can refer to this page at any point, even while actively writing the story,
                 and it should offer a clear step-by-step outline of how to properly utilize this website as it
                 provides unique capabilities in designing your very own "Choose Your Own Adventure" style story.
@@ -168,6 +190,7 @@
 
 </body>
 
+<!-- Footer -->
 <footer class="text-center font-italic font-weight-light" style="background-color: rgba(0, 0, 0, 0.2); color: white;">
     <div class="h4">
         <br/>
@@ -178,4 +201,6 @@
     </div>
     <br/>
 </footer>
+<!-- End of Footer -->
+
 </html>

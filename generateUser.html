@@ -27,31 +27,37 @@
           type="text/css">
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
-    <link href="css/main.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet"> <!-- external stylesheet -->
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div>
-        <a class="navbar-brand" href="homepage.html">
-            <img src="img/logo.png" alt="logo" style="width: 50%; border-radius: 50%; margin: 0 1.5% 0 0;">
-            <h1>Create Your Own Story</h1>
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
-                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-    </div>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
-            <a class="nav-item nav-link" href="homepage.html">Home</a>
-            <a class="nav-item nav-link" href="generateTitle.html">Create Your Own Title</a>
-            <a class="nav-item nav-link active" href="generateUser.html">Create Your Own Main Character <span
-                    class="sr-only">(current)</span></a>
-            <a class="nav-item nav-link" href="writeStory.html">Create Your Own Story</a>
-            <a class="nav-item nav-link" href="manual.html">How To Use the Website</a>
+<header>
+    <!-- header, logo, menu -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light nav-effect">
+        <div>
+            <a class="navbar-brand" href="homepage.html">
+                <img src="img/logo.png" alt="logo" style="width: 50%; border-radius: 50%; margin: 0 1.5% 0 0;">
+                <h1>Create Your Own Story</h1>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+                    aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
         </div>
-    </div>
-</nav>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link" href="homepage.html">Home</a>
+                <a class="nav-item nav-link" href="generateTitle.html">Create Your Own Title</a>
+                <a class="nav-item nav-link active" href="generateUser.html">Create Your Own Main Character <span
+                        class="sr-only">(current)</span></a>
+                <a class="nav-item nav-link" href="writeStory.html">Create Your Own Story</a>
+                <a class="nav-item nav-link" href="manual.html">How To Use the Website</a>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<!-- Main Contents -->
+
 
 <script type="text/javascript">
     function formIsReadyToSubmit()
@@ -92,8 +98,10 @@
                         Please enter character name (only letters and spaces allowed)
                     </div>
                 </div>
+                <br/>
                 <div class="form-group form-switch text-center container col-md-8 has-validation">
-                    <label for="characterImageUpload" class="text-center" style="margin: auto">Upload Character Profile Image</label>
+                    <label for="characterImageUpload" class="text-center" style="margin: auto">Upload Character Profile
+                        Image</label>
                     <br/>
                     <input id="characterImageUpload" type="file" accept="image/png, image/jpeg, image/jpg"
                            style="text-align: center; margin: auto; width: 50%;" required="required">
@@ -119,6 +127,7 @@
                         });
                     </script>
                 </div>
+                <br/>
                 <div class="form-group form-switch col-md-8 has-validation" style="margin: auto;">
                     <input type="email" id="email" name="email" value="Enter character email"
                            style="border: 30px white solid; width: 50%; margin: auto;"
@@ -127,7 +136,7 @@
                         Please enter email
                     </div>
                 </div>
-
+                <br/>
                 <div class="container">
                     <!-- numeric-only validation -->
                     <label>Enter Height</label>
@@ -149,6 +158,7 @@
                     </div>
                     <br/>
                 </div>
+                <br/>
                 <div class="form-group form-switch col-md-8 has-validation clearfix" style="margin: auto">
                     <textarea id="backstory" name="backstory" required="required"
                               class="align-content-center text-center" style="width: 50%; margin: auto;"
@@ -157,6 +167,7 @@
                         Please enter backstory
                     </div>
                 </div>
+                <br/>
                 <div class="form-group form-switch col-md-8 has-validation" style="margin: auto">
                     <input type="text" placeholder="Enter Character Birthday" name="datepicker"
                            id="datepicker" style="width: 50%;" required="required">
@@ -171,23 +182,26 @@
                     </script>
                 </div>
                 <br/>
-                <div class="form-group form-switch">
+                <div class="form-group form-switch col-md-8" style="margin: auto">
                     <input type="text" id="habit" name="habit"
                            class="border-1 input-group text-center container"
                            style="border: 30px white solid; width: 50%;"
                            placeholder="Enter Most Annoying Habit">
                 </div>
-                <div class="form-group form-switch">
+                <br/>
+                <div class="form-group form-switch col-md-8" style="margin: auto">
                     <input type="text" id="personality" name="personality"
                            class="border-1 input-group text-center container"
                            style="border: 30px white solid; width: 50%;"
                            placeholder="Enter Dominant Personality Trait">
                 </div>
-                <div class="form-group form-switch">
+                <br/>
+                <div class="form-group form-switch col-md-8" style="margin: auto">
                     <input type="text" id="catchPhrase" name="catchPhrase"
                            class="border-1 input-group text-center container"
                            style="border: 30px white solid; width: 50%;" placeholder="Enter Catch Phrase">
                 </div>
+                </br>
                 <div class="align-content-center form-group btn-close-white" onmouseover="formIsReadyToSubmit()">
                     <input class="btn btn-light text-center" type="submit" id="submit"
                            value="NEXT"></div>
@@ -226,6 +240,8 @@
     }
 </script>
 </body>
+
+<!-- Footer -->
 <footer class="text-center font-italic font-weight-light" style="background-color: rgba(0, 0, 0, 0.2); color: white;">
     <div class="h4">
         <br/>
@@ -236,4 +252,6 @@
     </div>
     <br/>
 </footer>
+<!-- End of Footer -->
+
 </html>
