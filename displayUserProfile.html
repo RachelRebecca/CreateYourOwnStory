@@ -16,6 +16,12 @@
           type="text/css">
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script>
+        // Proxy code source: https://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript
+        const params = new Proxy(new URLSearchParams(window.location.search), {
+            get: (searchParams, prop) => searchParams.get(prop),
+        });
+    </script>
     <link href="css/main.css" rel="stylesheet">
 </head>
 <body>
@@ -29,8 +35,8 @@
                 document.getElementById("profileCard").innerText = name;
             </script>
             <div>
-            <h5 class="card-title text-center" id="birthday"></h5>
-            <h5 class="card-title text-center" id="age"></h5>
+                <h5 class="card-title text-center" id="birthday"></h5>
+                <h5 class="card-title text-center" id="age"></h5>
             </div>
             <script>
                 let birthday = sessionStorage.getItem("userBirthday");
@@ -49,7 +55,8 @@
                     x = (x === null ? "img/Profile.jpg" : x);
                     uploadedImage.attr("src", x);
 
-                    function err() {
+                    function err()
+                    {
                         uploadedImage.attr("src", "img/Profile.jpg");
                         alert("The system was unable to restore the image. Using default image.");
                     }
@@ -61,25 +68,30 @@
                 backstory = backstory === null ? "<b>Backstory:</b> Unknown" : "<b>Backstory:</b> <p>" + backstory + "</p>";
                 document.getElementById("backstory").innerHTML = backstory;
             </script>
+            <div>
+                <h6 class="card-title text-center" id="email"></h6>
+                <h6 class="card-title text-center" id="height"></h6>
+            </div>
+            <script>
+                if (params.email !== null && params.email !== "") {
+                    document.getElementById("email").innerHTML = "Email address: " + params.email;
+                }
+                if (params.feet !== null && params.feet !== "" && params.inches !== null && params.inches !== "") {
+                    document.getElementById("height").innerHTML = "Height: " + params.feet + "\"" + params.inches;
+                }
+            </script>
+
             <p class="card-title text-center" id="habit"></p>
             <p class="card-title text-center" id="personality"></p>
             <p class="card-title text-center" id="catchPhrase"></p>
             <script>
-                // Proxy code source: https://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript
-                const params = new Proxy(new URLSearchParams(window.location.search), {
-                    get: (searchParams, prop) => searchParams.get(prop),
-                });
-
-                if (params.habit !== null && params.habit !== "")
-                {
+                if (params.habit !== null && params.habit !== "") {
                     document.getElementById("habit").innerHTML = "Most annoying habit: " + params.habit;
                 }
-                if (params.personality !== null && params.personality !== "")
-                {
+                if (params.personality !== null && params.personality !== "") {
                     document.getElementById("personality").innerHTML = "Dominant personality trait: " + params.personality;
                 }
-                if (params.catchPhrase !== null && params.catchPhrase !== "")
-                {
+                if (params.catchPhrase !== null && params.catchPhrase !== "") {
                     document.getElementById("catchPhrase").innerHTML = "Catch phrase: " + params.catchPhrase;
                 }
             </script>
