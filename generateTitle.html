@@ -48,15 +48,18 @@
 </nav>
 
 <script type="text/javascript">
-    function inputtedTitle() {
+    function inputtedTitle()
+    {
         return $("#title").val().length !== 0;
     }
 
-    function uploadedCoverImage() {
+    function uploadedCoverImage()
+    {
         return document.getElementById("coverImageUpload").files.length !== 0;
     }
 
-    function formIsReadyToSubmit() {
+    function formIsReadyToSubmit()
+    {
         if (inputtedTitle() && uploadedCoverImage()) {
             $("#submit").attr('disabled', false);
         } else {
@@ -66,7 +69,7 @@
 
 </script>
 
-<h2 class="dropdown-header text-center">Create Title Page</h2>
+<h2 class="text-center">>>>Create Title Page<<<</h2>
 <section class="clearfix">
     <div class="clearfix">
         <div class="form-group">
@@ -85,8 +88,10 @@
                     <img src="img/logo.png" id="uploadedCoverImage" alt="cover image" style="display:none">
 
                     <script>
-                        $(function () {
-                            $("#coverImageUpload").change(function (event) {
+                        $(function ()
+                        {
+                            $("#coverImageUpload").change(function (event)
+                            {
                                 {
                                     if (event.target.files.length > 0) {
                                         let x = URL.createObjectURL(event.target.files[0]);

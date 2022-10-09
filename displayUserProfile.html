@@ -22,57 +22,89 @@
 <div class="container" id="mainContents">
     <div class="card imageCard" style="background-color: rgba(0, 0, 0, .1); box-shadow: 0 0 15px 0">
         <div class="card-body text-center">
-            <h5 class="card-title">Main Character Profile Image</h5>
+            <h1 class="card-title" id="profileCard"></h1>
+            <script>
+                let name = sessionStorage.getItem("characterName");
+                name = name === null ? "You" : name;
+                document.getElementById("profileCard").innerText = name;
+            </script>
+            <div>
+            <h5 class="card-title text-center" id="birthday"></h5>
+            <h5 class="card-title text-center" id="age"></h5>
+            </div>
+            <script>
+                let birthday = sessionStorage.getItem("userBirthday");
+                birthday = (birthday === null ? "birthday: unknown" : "birthday: " + birthday);
+                document.getElementById("birthday").innerText = birthday;
+
+                let age = sessionStorage.getItem("userAge");
+                age = (age === null ? "age: unknown" : "age: " + age);
+                document.getElementById("age").innerText = age;
+
+            </script>
             <div class="profileImage">
-                <img id="uploadedImage" src="" alt="profile image">
+                <img id="uploadedImage" src="" alt="profile image" onerror="err()">
                 <script>
+                    let uploadedImage = $("#uploadedImage");
                     let x = sessionStorage.getItem("profileImage");
                     x = (x === null ? "img/Profile.jpg" : x);
-                    $("#uploadedImage").attr("src", x);
+                    uploadedImage.attr("src", x);
+
+                    function err() {
+                        uploadedImage.attr("src", "img/Profile.jpg");
+                        alert("The system was unable to restore the image. Using default image.");
+                    }
                 </script>
             </div>
         </div>
     </div>
     <div>
         <script>
-            document.writeln(sessionStorage.getItem("characterName") + "<br>");
-            document.writeln(sessionStorage.getItem("userBirthday") + "<br>");
-            document.writeln(sessionStorage.getItem("userAge") + "<br>");
             document.writeln(sessionStorage.getItem("backstory") + "<br>");
         </script>
     </div>
 </div>
 
-<div class="align-content-center form-group btn-close-white" style="margin: auto">
-    <button class="btn btn-light text-center" id="printPageButton" onclick="printProfilePage()">Print Page</button>
-    <button class="btn btn-light text-center" id="returnToCreateUserProfilePageButton" onclick="returnToUserProfilePage()">Go Back
-    </button>
-    <button class="btn btn-light text-center" id="startWritingButton" onclick="returnToWriteStoryPage()">Start Writing Story</button>
-</div>
-
+<hr id="user-divider">
+<form>
+    <input type="button" id="printPageButton" onclick="printProfilePage()" value="Print Page">
+    <input type="button" id="returnToCreateUserProfilePageButton" onclick="returnToUserProfilePage()" value="Go Back">
+    <input type="button" id="startWritingButton" onclick="returnToWriteStoryPage()" value="Start Writing Story">
+</form>
 
 <script>
-    function printProfilePage() {
+    function printProfilePage()
+    {
+        let hr = document.getElementById("user-divider");
         let printButton = document.getElementById("printPageButton");
         let returnButton = document.getElementById("returnToCreateUserProfilePageButton");
         let writeStoryButton = document.getElementById("startWritingButton");
 
-        printButton.style.visibility = 'hidden';
-        returnButton.style.visibility = 'hidden';
-        writeStoryButton.style.visibility = 'hidden';
+        setVisibility(hr, 'hidden');
+        setVisibility(printButton, 'hidden');
+        setVisibility(returnButton, 'hidden');
+        setVisibility(writeStoryButton, 'hidden');
 
         window.print()
 
-        printButton.style.visibility = 'visible';
-        returnButton.style.visibility = 'visible';
-        writeStoryButton.style.visibility = 'visible';
+        setVisibility(hr, 'visible');
+        setVisibility(printButton, 'visible');
+        setVisibility(returnButton, 'visible');
+        setVisibility(writeStoryButton, 'visible');
     }
 
-    function returnToUserProfilePage() {
+    function setVisibility(element, visibility)
+    {
+        element.style.visibility = visibility;
+    }
+
+    function returnToUserProfilePage()
+    {
         location.href = "generateUser.html";
     }
 
-    function returnToWriteStoryPage() {
+    function returnToWriteStoryPage()
+    {
         location.href = "writeStory.html";
     }
 </script>

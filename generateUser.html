@@ -83,7 +83,7 @@
 
 </script>
 
-<h2 class="dropdown-header text-center">Create Main Character Profile</h2>
+<h2 class="text-center">>>>Main Character Profile<<<</h2>
 <section class="clearfix">
     <div class="clearfix">
         <div class="form-group">
@@ -146,8 +146,17 @@
     function saveFields() {
         sessionStorage.setItem("userBirthday", $("#datepicker").val())
         let birthday = new Date(sessionStorage.getItem("userBirthday"));
+
+        // calculate age based on user input (source: https://stackoverflow.com/questions/4060004/calculate-age-given-the-birth-date-in-the-format-yyyymmdd)
+        let birthYear = birthday.getFullYear();
+        let birthMonth = birthday.getMonth();
+        let birthDay = birthday.getDay();
         let today = new Date();
-        let age = today.getFullYear() - birthday.getFullYear(); // calculate based on input
+        let age = today.getFullYear() - birthYear;
+        if (today.getMonth() < birthMonth || (today.getMonth() === birthMonth && today.getDate() < birthDay)) {
+            age--;
+        }
+
         sessionStorage.setItem("userAge", age + "");
 
         sessionStorage.setItem("characterName", $("#name").val());
