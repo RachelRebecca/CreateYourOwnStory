@@ -48,25 +48,26 @@
 </nav>
 
 <script type="text/javascript">
-    function inputtedTitle()
-    {
-        return $("#title").val().length !== 0;
-    }
-
-    function uploadedCoverImage()
-    {
-        return document.getElementById("coverImageUpload").files.length !== 0;
-    }
-
     function formIsReadyToSubmit()
     {
-        if (inputtedTitle() && uploadedCoverImage()) {
-            $("#submit").attr('disabled', false);
-        } else {
-            $("#submit").attr('disabled', true);
-        }
-    }
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        let forms = document.querySelectorAll('.needs-validation')
 
+        // Loop over them and prevent submission
+        Array.prototype.slice.call(forms)
+            .forEach(function (form)
+            {
+                form.addEventListener('submit', function (event)
+                {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+
+                    form.classList.add('was-validated')
+                }, false)
+            })
+    }
 </script>
 
 <h2 class="text-center">>>>Create Title Page<<<</h2>
@@ -74,19 +75,25 @@
     <div class="clearfix">
         <div class="form-group">
             <form name="titlePageForm" method="get" action="displayTitlePage.html"
-                  style="padding: 10px; background-color: #e5e5e5;" class="clearfix" onsubmit="saveTitle()">
-                <div class="form-group form-switch">
+                  style="padding: 10px; background-color: #e5e5e5;" class="needs-validation clearfix"
+                  onsubmit="saveTitle()" novalidate>
+                <div class="form-group form-switch col-md-8 has-validation" style="margin: auto;">
                     <input pattern="[A-Za-z0-9\s]+" type="text" placeholder="Enter Title" id="title"
                            class="border-1 input-group text-center container"
-                           style="border: 30px white solid; width: 450px;" required="" onchange="formIsReadyToSubmit()">
+                           style="border: 30px white solid; width: 50%; margin: auto" required="required">
+                    <div class="invalid-feedback">
+                        Please enter title
+                    </div>
                 </div>
-                <div class="form-group form-switch text-center container">
+                <div class="form-group form-switch text-center container col-md-8 has-validation">
                     <label for="coverImageUpload">Upload Cover Image</label>
                     <br/>
                     <input id="coverImageUpload" type="file" name="file" accept="image/png, image/jpeg, image/jpg"
-                           style="text-align: center; margin: auto;">
+                           style="text-align: center; margin: auto; width: 50%" required="required">
                     <img src="img/logo.png" id="uploadedCoverImage" alt="cover image" style="display:none">
-
+                    <div class="invalid-feedback">
+                        Please upload cover image
+                    </div>
                     <script>
                         $(function ()
                         {
@@ -108,7 +115,7 @@
                     </script>
                 </div>
                 <div class="align-content-center form-group btn-close-white" onmouseover="formIsReadyToSubmit()">
-                    <input class="btn btn-light text-center" type="submit" id="submit" value="NEXT" disabled></div>
+                    <input class="btn btn-light text-center" type="submit" id="submit" value="NEXT"></div>
             </form>
         </div>
     </div>

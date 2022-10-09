@@ -54,33 +54,26 @@
 </nav>
 
 <script type="text/javascript">
-    // Form Validation (all fields are required):
+    function formIsReadyToSubmit()
+    {
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        let forms = document.querySelectorAll('.needs-validation')
 
+        // Loop over them and prevent submission
+        Array.prototype.slice.call(forms)
+            .forEach(function (form)
+            {
+                form.addEventListener('submit', function (event)
+                {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
 
-    function inputtedName() {
-        return $("#name").val().length !== 0;
+                    form.classList.add('was-validated')
+                }, false)
+            })
     }
-
-    function imageUploaded() {
-        return document.getElementById("characterImageUpload").files.length !== 0;
-    }
-
-    function backstoryRecorded() {
-        return $("#backstory").val().length !== 0;
-    }
-
-    function dateSelected() {
-        return $("#datepicker").val().length !== 0;
-    }
-
-    function formIsReadyToSubmit() {
-        if (inputtedName() && imageUploaded() && backstoryRecorded() && dateSelected()) {
-            $("#submit").attr('disabled', false);
-        } else {
-            $("#submit").attr('disabled', true);
-        }
-    }
-
 </script>
 
 <h2 class="text-center">>>>Main Character Profile<<<</h2>
@@ -88,22 +81,30 @@
     <div class="clearfix">
         <div class="form-group">
             <form name="mainCharacterForm" method="get" action="displayUserProfile.html"
-                  style="padding: 10px; background-color: #e5e5e5;" class="clearfix" onsubmit="saveFields()">
-                <div class="form-group form-switch">
+                  style="padding: 10px; background-color: #e5e5e5;" class="needs-validation clearfix"
+                  onsubmit="saveFields()" novalidate>
+                <div class="form-group form-switch col-md-8 has-validation" style="margin: auto">
                     <input type="text" placeholder="Enter Character Name" id="name"
                            class="border-1 input-group text-center container" name="characterName"
-                           style="border: 30px white solid; width: 450px;" required="required" onchange="formIsReadyToSubmit()">
+                           style="border: 30px white solid; width: 50%; margin: auto;" required="required">
+                    <div class="invalid-feedback">
+                        Please enter character name
+                    </div>
                 </div>
-                <div class="form-group form-switch text-center container">
+                <div class="form-group form-switch text-center container col-md-8 has-validation">
                     <label for="characterImageUpload">Upload Character Profile Image</label>
                     <br/>
                     <input id="characterImageUpload" type="file" accept="image/png, image/jpeg, image/jpg"
-                           style="text-align: center; margin: auto;" required="required">
+                           style="text-align: center; margin: auto; width: 50%;" required="required">
                     <img src="img/Profile.jpg" id="uploadedUserImage" alt="cover image" style="display:none">
-
+                    <div class="invalid-feedback">
+                        Please upload profile image
+                    </div>
                     <script>
-                        $(function () {
-                            $("#characterImageUpload").change(function (event) {
+                        $(function ()
+                        {
+                            $("#characterImageUpload").change(function (event)
+                            {
                                 {
                                     if (event.target.files.length > 0) {
                                         let x = URL.createObjectURL(event.target.files[0]);
@@ -113,54 +114,60 @@
                                         sessionStorage.setItem("profileImage", null);
                                     }
                                 }
-
-                                formIsReadyToSubmit();
                             })
                         });
                     </script>
 
                 </div>
-                <div class="form-group form-switch">
+                <div class="form-group form-switch col-md-8 has-validation" style="margin: auto">
                     <textarea id="backstory" name="backstory" required="required"
-                              class="align-content-center text-center"
-                              onchange="formIsReadyToSubmit()">Enter Character Backstory</textarea>
+                              class="align-content-center text-center" style="width: 50%; margin: auto;"
+                    >Enter Character Backstory</textarea>
+                    <div class="invalid-feedback">
+                        Please enter backstory
+                    </div>
                 </div>
-                <div class="form-group form-switch">
-                    <input type="text" placeholder="Enter Character Birthday" required="required"
-                           onchange="formIsReadyToSubmit()"
-                           id="datepicker" style="width: 450px;">
+                <div class="form-group form-switch col-md-8 has-validation" style="margin: auto">
+                    <input type="text" placeholder="Enter Character Birthday" name="datepicker"
+                           id="datepicker" style="width: 50%;" required="required">
+                    <div class="invalid-feedback">
+                        Please choose a date
+                    </div>
                     <script>
-                        $(function () {
+                        $(function ()
+                        {
                             $("#datepicker").datepicker();
                         });
                     </script>
                 </div>
+                <br/>
                 <div class="form-group form-switch">
                     <input type="text" id="habit" name="habit"
                            class="border-1 input-group text-center container"
-                           style="border: 30px white solid; width: 450px;"
+                           style="border: 30px white solid; width: 50%;"
                            placeholder="Enter Most Annoying Habit">
                 </div>
                 <div class="form-group form-switch">
                     <input type="text" id="personality" name="personality"
                            class="border-1 input-group text-center container"
-                           style="border: 30px white solid; width: 450px;"
+                           style="border: 30px white solid; width: 50%;"
                            placeholder="Enter Dominant Personality Trait">
                 </div>
                 <div class="form-group form-switch">
                     <input type="text" id="catchPhrase" name="catchPhrase"
                            class="border-1 input-group text-center container"
-                           style="border: 30px white solid; width: 450px;" placeholder="Enter Catch Phrase">
+                           style="border: 30px white solid; width: 50%;" placeholder="Enter Catch Phrase">
                 </div>
                 <div class="align-content-center form-group btn-close-white" onmouseover="formIsReadyToSubmit()">
                     <input class="btn btn-light text-center" type="submit" id="submit"
-                           value="NEXT" disabled></div>
+                           value="NEXT"></div>
             </form>
         </div>
     </div>
 </section>
 <script>
-    function saveFields() {
+    function saveFields()
+    {
         sessionStorage.setItem("userBirthday", $("#datepicker").val())
         let birthday = new Date(sessionStorage.getItem("userBirthday"));
 
