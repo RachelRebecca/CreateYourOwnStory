@@ -40,7 +40,6 @@
                 let age = sessionStorage.getItem("userAge");
                 age = (age === null ? "age: unknown" : "age: " + age);
                 document.getElementById("age").innerText = age;
-
             </script>
             <div class="profileImage">
                 <img id="uploadedImage" style="border-radius: 50%;" src="" alt="profile image" onerror="err()">
@@ -56,12 +55,35 @@
                     }
                 </script>
             </div>
+            <p class="card-title text-center" id="backstory"></p>
+            <script>
+                let backstory = sessionStorage.getItem("backstory");
+                backstory = backstory === null ? "<b>Backstory:</b> Unknown" : "<b>Backstory:</b> <p>" + backstory + "</p>";
+                document.getElementById("backstory").innerHTML = backstory;
+            </script>
+            <p class="card-title text-center" id="habit"></p>
+            <p class="card-title text-center" id="personality"></p>
+            <p class="card-title text-center" id="catchPhrase"></p>
+            <script>
+                const params = new Proxy(new URLSearchParams(window.location.search), {
+                    get: (searchParams, prop) => searchParams.get(prop),
+                });
+
+                if (params.habit !== null && params.habit !== "")
+                {
+                    document.getElementById("habit").innerHTML = "Most annoying habit: " + params.habit;
+                }
+                if (params.personality !== null && params.personality !== "")
+                {
+                    document.getElementById("personality").innerHTML = "Dominant personality trait: " + params.personality;
+                }
+                if (params.catchPhrase !== null && params.catchPhrase !== "")
+                {
+                    document.getElementById("catchPhrase").innerHTML = "Catch phrase: " + params.catchPhrase;
+                }
+            </script>
+
         </div>
-    </div>
-    <div>
-        <script>
-            document.writeln(sessionStorage.getItem("backstory") + "<br>");
-        </script>
     </div>
 </div>
 
