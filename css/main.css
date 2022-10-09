@@ -1,3 +1,4 @@
+/* External Stylesheet Appearing on all Webpages */
 html {
     background-color: silver;
 }
@@ -9,13 +10,13 @@ body {
     align-content: center;
 }
 
-form{
+form {
     text-align: center;
 }
 
 textarea {
     box-sizing: border-box;
-    max-width:80%;
+    max-width: 80%;
     width: 450px;
     height: 500px;
 }
@@ -33,6 +34,7 @@ textarea {
 .carousel-control-next, .carousel-control-prev {
     filter: invert(100%);
 }
+
 .carousel-inner > .item > img {
     min-width: 100%;
 }
@@ -42,7 +44,7 @@ textarea {
     width: 75% !important;
 }
 
-.imageCard{
+.imageCard {
     margin: auto;
     width: 50%;
     height: 50%;
@@ -60,7 +62,14 @@ textarea {
     max-width: 90%;
 }
 
-.nav-effect > #navbarNavAltMarkup > div > a:hover{
+.nav-effect > #navbarNavAltMarkup > div > a:hover {
     background-color: lightblue;
     color: white;
+}
+
+.form-element {
+    border: 30px white solid;
+    width: 50%;
+    margin: auto;
+    text-align: center;
 }

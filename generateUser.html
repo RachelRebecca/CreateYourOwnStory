@@ -90,9 +90,9 @@
                   style="padding: 10px; background-color: #e5e5e5;" class="needs-validation clearfix"
                   onsubmit="saveFields()" novalidate>
                 <div class="form-group form-switch col-md-8 has-validation" style="margin: auto">
-                    <input type="text" placeholder="Enter Character Name" id="name" pattern="^[a-zA-Z\s]*$"
-                           class="border-1 input-group text-center container" name="characterName"
-                           style="border: 30px white solid; width: 50%; margin: auto;" required="required">
+                    <input type="text" placeholder="Name of Character" id="name" pattern="^[a-zA-Z\s]*$"
+                           class="border-1 input-group text-center container form-element"
+                           name="characterName" required="required">
                     <!-- text-only validation -->
                     <div class="invalid-feedback">
                         Please enter character name (only letters and spaces allowed)
@@ -104,7 +104,7 @@
                         Image</label>
                     <br/>
                     <input id="characterImageUpload" type="file" accept="image/png, image/jpeg, image/jpg"
-                           style="text-align: center; margin: auto; width: 50%;" required="required">
+                           required="required" class="form-element has-validation">
                     <img src="img/Profile.jpg" id="uploadedUserImage" alt="cover image" style="display:none">
                     <div class="invalid-feedback">
                         Please upload profile image
@@ -129,9 +129,8 @@
                 </div>
                 <br/>
                 <div class="form-group form-switch col-md-8 has-validation" style="margin: auto;">
-                    <input type="email" id="email" name="email" value="Enter character email"
-                           style="border: 30px white solid; width: 50%; margin: auto;"
-                           required="required" class="has-validation">
+                    <input type="email" id="email" name="email" placeholder="Email of Character"
+                           required="required" class="has-validation form-element">
                     <div class="invalid-feedback">
                         Please enter email
                     </div>
@@ -139,19 +138,18 @@
                 <br/>
                 <div class="container">
                     <!-- numeric-only validation -->
-                    <label>Enter Height</label>
+                    <label>Height of Character</label>
                     <div class="form-group form-switch col-md-4 has-validation" style="margin: auto">
-                        <input type="text" id="feet" name="feet" value="Feet" pattern="^[0-9]+$"
-                               style="width: 50%; margin: auto"
-                               required="required" class="has-validation">
+                        <input type="text" id="feet" name="feet" placeholder="Feet" pattern="^[0-9]+$"
+                               required="required" class="has-validation form-element">
                         <div class="invalid-feedback">
                             Please enter height (in feet) --> numeric data only
                         </div>
                     </div>
+                    <br/>
                     <div class="form-group form-switch col-md-4 has-validation" style="margin: auto">
-                        <input type="text" id="inches" name="inches" value="Inches" pattern="^[0-9]+$"
-                               style="width: 50%; margin: auto"
-                               required="required" class="has-validation">
+                        <input type="text" id="inches" name="inches" placeholder="Inches" pattern="^[0-9]+$"
+                               required="required" class="has-validation form-element">
                         <div class="invalid-feedback">
                             Please enter height (in inches) --> numeric data only
                         </div>
@@ -161,16 +159,15 @@
                 <br/>
                 <div class="form-group form-switch col-md-8 has-validation clearfix" style="margin: auto">
                     <textarea id="backstory" name="backstory" required="required"
-                              class="align-content-center text-center" style="width: 50%; margin: auto;"
-                    >Enter Character Backstory</textarea>
+                              class="align-content-center text-center">Character Backstory</textarea>
                     <div class="invalid-feedback">
                         Please enter backstory
                     </div>
                 </div>
                 <br/>
                 <div class="form-group form-switch col-md-8 has-validation" style="margin: auto">
-                    <input type="text" placeholder="Enter Character Birthday" name="datepicker"
-                           id="datepicker" style="width: 50%;" required="required">
+                    <input type="text" placeholder="Birthday of Character" name="datepicker"
+                           id="datepicker" required="required" class="has-validation form-element">
                     <div class="invalid-feedback">
                         Please choose a date
                     </div>
@@ -186,20 +183,20 @@
                     <input type="text" id="habit" name="habit"
                            class="border-1 input-group text-center container"
                            style="border: 30px white solid; width: 50%;"
-                           placeholder="Enter Most Annoying Habit">
+                           placeholder="Most Annoying Habit">
                 </div>
                 <br/>
                 <div class="form-group form-switch col-md-8" style="margin: auto">
                     <input type="text" id="personality" name="personality"
                            class="border-1 input-group text-center container"
                            style="border: 30px white solid; width: 50%;"
-                           placeholder="Enter Dominant Personality Trait">
+                           placeholder="Dominant Personality Trait">
                 </div>
                 <br/>
                 <div class="form-group form-switch col-md-8" style="margin: auto">
                     <input type="text" id="catchPhrase" name="catchPhrase"
                            class="border-1 input-group text-center container"
-                           style="border: 30px white solid; width: 50%;" placeholder="Enter Catch Phrase">
+                           style="border: 30px white solid; width: 50%;" placeholder="Catch Phrase">
                 </div>
                 </br>
                 <div class="align-content-center form-group btn-close-white" onmouseover="formIsReadyToSubmit()">
