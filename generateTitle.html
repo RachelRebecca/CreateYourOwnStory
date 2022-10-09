@@ -74,7 +74,7 @@
     <div class="clearfix">
         <div class="form-group">
             <form name="titlePageForm" method="get" action="displayTitlePage.html"
-                  style="padding: 10px; background-color: #e5e5e5;" class="clearfix">
+                  style="padding: 10px; background-color: #e5e5e5;" class="clearfix" onsubmit="saveTitle()">
                 <div class="form-group form-switch">
                     <input pattern="[A-Za-z0-9\s]+" type="text" placeholder="Enter Title" id="title"
                            class="border-1 input-group text-center container"
@@ -107,12 +107,18 @@
                         });
                     </script>
                 </div>
-                <div class="align-content-center form-group btn-close-white">
+                <div class="align-content-center form-group btn-close-white" onmouseover="formIsReadyToSubmit()">
                     <input class="btn btn-light text-center" type="submit" id="submit" value="NEXT" disabled></div>
             </form>
         </div>
     </div>
 </section>
+<script>
+    function saveTitle()
+    {
+        sessionStorage.setItem("titleName", $("#title").val());
+    }
+</script>
 </body>
 <footer class="text-center font-italic font-weight-light" style="background-color: rgba(0, 0, 0, 0.2); color: white;">
     <div class="h4">

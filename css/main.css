@@ -54,7 +54,6 @@ textarea {
 #uploadedImage, #uploadedTitle {
     text-align: center;
     margin: auto;
-    border-radius: 50%;
     width: 300px;
     height: 300px;
     box-sizing: border-box;
