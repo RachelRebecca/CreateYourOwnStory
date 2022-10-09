@@ -35,7 +35,8 @@
             <img src="img/logo.png" alt="logo" style="width: 50%; border-radius: 50%; margin: 0 1.5% 0 0;">
             <h1>Create Your Own Story</h1>
         </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
     </div>
@@ -79,6 +80,12 @@
     <input type="button" id="viewStory" value="View Sample Book" onclick="showStory()">
     <input type="button" id="downloadStory" value="Download Sample Book"
            onclick="download('story.txt', organizeStoryIntoArray())">
+    <input type="button" class="btn btn-danger" id="clearStory" value="Reset Story" onclick=
+            "sessionStorage.setItem('root', 'Once Upon a Time');
+            sessionStorage.setItem('nodes', null);
+            sessionStorage.setItem('dropdownValues', null);
+            sessionStorage.setItem('headlines', null);
+            location.reload();">
 </form>
 </body>
 <footer class="text-center font-italic font-weight-light" style="background-color: rgba(0, 0, 0, 0.2); color: white;">

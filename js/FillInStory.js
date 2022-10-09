@@ -108,6 +108,4 @@ function doOnSubmit()
     console.log(nodes);
 
     sessionStorage.setItem("nodes", JSON.stringify(nodes));
-
-    showStories();
 }

@@ -1,11 +1,14 @@
 let nodes;
 
-if (sessionStorage.getItem('nodes') !== null) {
-    nodes = JSON.parse(sessionStorage.getItem('nodes'));
-    console.log(nodes);
 
-    for (let i = 0; i < nodes.length; i++) {
-        tree.insert(nodes[i].nodePath, nodes[i].headline, nodes[i].text);
+if (sessionStorage.getItem('nodes') != null) {
+    nodes = JSON.parse(sessionStorage.getItem('nodes'));
+    if (nodes !== null) {
+        console.log(nodes);
+
+        for (let i = 0; i < nodes.length; i++) {
+            tree.insert(nodes[i].nodePath, nodes[i].headline, nodes[i].text);
+        }
     }
 }
 
