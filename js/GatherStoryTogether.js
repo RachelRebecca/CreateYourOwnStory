@@ -59,9 +59,8 @@ function organizeStoryIntoArray()
                 story += sortedHeadlines[firstIndex] + ": Turn to page " + (firstIndex + 1)
                     + "\n" + sortedHeadlines[secondIndex] + ": Turn to page " + (secondIndex + 1)
                     + "\f";
-            }
-            else {
-                story+="\f";
+            } else {
+                story += "\f";
             }
         }
     }
@@ -70,13 +69,14 @@ function organizeStoryIntoArray()
 
 function showStories()
 {
-    $( "#viewStories" ).dialog({
+    $("#viewStories").dialog({
         dialogClass: "no-close",
         buttons: [
             {
                 text: gatherStoryTogether(),
-                click: function() {
-                    $( this ).dialog( "open" );
+                click: function ()
+                {
+                    $(this).dialog("open");
                 }
             }
         ]

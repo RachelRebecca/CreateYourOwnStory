@@ -37,7 +37,8 @@
                     x = (x === null ? "img/logo.png" : x);
                     uploadedTitle.attr("src", x);
 
-                    function err() {
+                    function err()
+                    {
                         uploadedTitle.attr("src", "img/logo.png");
                         alert("The system was unable to restore the image. Using default image.");
                     }
@@ -56,7 +57,8 @@
 
 
 <script>
-    function printProfilePage() {
+    function printProfilePage()
+    {
         let hr = document.getElementById("title-divider");
         let printButton = document.getElementById("printTitlePageButton");
         let returnButton = document.getElementById("returnToCreateTitlePageButton");
