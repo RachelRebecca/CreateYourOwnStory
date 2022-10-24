@@ -70,7 +70,17 @@ function organizeStoryIntoArray()
 
 function showStories()
 {
-    alert(gatherStoryTogether());
+    $( "#viewStories" ).dialog({
+        dialogClass: "no-close",
+        buttons: [
+            {
+                text: gatherStoryTogether(),
+                click: function() {
+                    $( this ).dialog( "open" );
+                }
+            }
+        ]
+    });
 }
 
 function showStory()
