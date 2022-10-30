@@ -107,6 +107,12 @@
     <input type="button" id="startWritingButton" onclick="returnToWriteStoryPage()" value="Start Writing Story">
 </form>
 
+<style media="print">
+    body {
+        -webkit-print-color-adjust: inherit;
+        -webkit-filter: drop-shadow(0 0 15px);
+    }
+</style>
 <script>
     function printProfilePage()
     {
