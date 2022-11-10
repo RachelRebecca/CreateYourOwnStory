@@ -90,6 +90,14 @@
     }
 </script>
 
+<script>
+    // prevent form from submitting by clicking Enter
+    $(window).keydown(function(event){
+        if(event.keyCode === 13) {
+            event.preventDefault();
+            return false;
+        }});
+</script>
 <h2 class="text-center">>>>Main Character Profile<<<</h2>
 <section class="clearfix">
     <div class="clearfix">
@@ -199,13 +207,14 @@
                     <script>
                         $(document).ready(function () {
                             let adjectives = [];
-                            $.getJSON("json/adjectives.json", function (data) {
-                                $.each(data, (i, adj) => {
-                                    adjectives.push(adj.adjective);
-                                })
-                                console.log(adjectives.length);
 
-                                $("#personality").autocomplete({source: adjectives}, {minLength: 3}
+                            $.getJSON("json/adjectives.json", function (data) {
+                                    $.each(data, (i, adj) => {
+                                        adjectives.push(adj.adjective);
+                                    })
+                                    console.log(adjectives.length);
+
+                                    $("#personality").autocomplete({source: adjectives}, {minLength: 3}
                                 )
                             });
                         });

@@ -62,6 +62,7 @@ textarea {
     max-width: 90%;
 }
 
+/* rollover effect*/
 .nav-effect > #navbarNavAltMarkup > div > a:hover {
     background-color: lightblue;
     color: white;
@@ -73,3 +74,4 @@ textarea {
     margin: auto;
     text-align: center;
 }
+
