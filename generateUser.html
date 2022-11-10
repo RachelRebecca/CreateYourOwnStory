@@ -71,17 +71,14 @@
 
 
 <script type="text/javascript">
-    function formIsReadyToSubmit()
-    {
+    function formIsReadyToSubmit() {
         // Fetch all the forms we want to apply custom Bootstrap validation styles to
         let forms = document.querySelectorAll('.needs-validation')
 
         // Loop over them and prevent submission
         Array.prototype.slice.call(forms)
-            .forEach(function (form)
-            {
-                form.addEventListener('submit', function (event)
-                {
+            .forEach(function (form) {
+                form.addEventListener('submit', function (event) {
                     if (!form.checkValidity()) {
                         event.preventDefault()
                         event.stopPropagation()
@@ -121,10 +118,8 @@
                         Please upload profile image
                     </div>
                     <script>
-                        $(function ()
-                        {
-                            $("#characterImageUpload").change(function (event)
-                            {
+                        $(function () {
+                            $("#characterImageUpload").change(function (event) {
                                 {
                                     if (event.target.files.length > 0) {
                                         let x = URL.createObjectURL(event.target.files[0]);
@@ -183,8 +178,7 @@
                         Please choose a date
                     </div>
                     <script>
-                        $(function ()
-                        {
+                        $(function () {
                             $("#datepicker").datepicker();
                         });
                     </script>
@@ -202,6 +196,12 @@
                            class="border-1 input-group text-center container"
                            style="border: 30px white solid; width: 50%;"
                            placeholder="Dominant Personality Trait">
+                    <scipt>
+                        $(function() => {
+                        let trait = $("#personality);
+                        $("#personality").loadJSON("json/adjectives.json");
+                        }
+                    </scipt>
                 </div>
                 <br/>
                 <div class="form-group form-switch col-md-8" style="margin: auto">
@@ -218,8 +218,7 @@
     </div>
 </section>
 <script>
-    function saveFields()
-    {
+    function saveFields() {
         sessionStorage.setItem("userBirthday", $("#datepicker").val())
         let birthday = new Date(sessionStorage.getItem("userBirthday"));
 
