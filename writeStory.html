@@ -91,10 +91,17 @@
 <hr>
 
 <form id="displayStory">
-    <!--<input type="button" id="viewStories" value="View All Possible Stories" onclick="showStories()">-->
+    <!-- dialog -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-sm">Need help?</button>
+    <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm" id="helpDialog">
+            <div class="modal-content">
+                <p>Go to the <a href="manual.html">manual page!</a></p>
+            </div>
+        </div>
+    </div>
     <input type="button" id="downloadStories" value="Download All Possible Stories"
            onclick="download('stories.txt', gatherStoryTogether())">
-    <!-- <input type="button" id="viewStory" value="View Sample Book" onclick="showStory()">-->
     <input type="button" id="downloadStory" value="Download Sample Book"
            onclick="download('story.txt', organizeStoryIntoArray())">
     <input type="button" class="btn btn-danger" id="clearStory" value="Reset Story" onclick=
