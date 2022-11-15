@@ -1,0 +1,22 @@
+{
+  "name": "createyourownstory",
+  "version": "1.0.0",
+  "description": "Design your own \"Choose Your Own Adventure\" style story",
+  "main": "homepage.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RachelRebecca/CreateYourOwnStory.git"
+  },
+  "author": "Rachel Nemesure",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RachelRebecca/CreateYourOwnStory/issues"
+  },
+  "homepage": "https://github.com/RachelRebecca/CreateYourOwnStory#readme",
+  "dependencies": {
+    "@vue/cli": "^5.0.8"
+  }
+}
