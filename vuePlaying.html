@@ -17,10 +17,10 @@
 <div id="root">
   <h1>{{greeting}}</h1>
   <input v-model="greeting">
-  <div v-if="count === 1">Green</div>
-  <div v-else-if="count === 2">Red</div>
+  <div v-if="count == 1">Green</div>
+  <div v-else-if="count == 2">Red</div>
   <div v-else>Orange</div>
-  <div v-show="count === 1">Green</div>
+  <div v-show="count == 1">Green</div>
   <br/>
   <h1 v-text="email"></h1> <!-- replaces {{email}} -->
   <p v-html="email"></p> <!-- reads html tags properly -->
@@ -39,37 +39,37 @@
   <!-- to replace v-on: use @ -->
   <button @click="addKitty">+ ADD</button>
   <ul>
-    <li v-for="cat in cats">{{cat}}</li>
-    <li v-for="cat in catObjects"> {{cat.name | capitalize | kittify}}</li>
-    <!-- the above can get replaced by component, but not working
-      <cat-list : catObjects="catObjects"></cat-list> -->
+   <!-- <li v-for="cat in cats">{{cat}}</li>-->
+    <!--<li v-for="cat in catobjects"> {{cat.name | capitalize | kittify}}</li>-->
+    <!-- the above can get replaced by component, but not working -->
+      <cat-list :cats="catobjects"></cat-list>
 </ul>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.min.js"></script>
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.min.js"></script>-->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.7.14"></script>
 <script>
-/* not getting this to work
 Vue.component('cat-list', {
-props: ['catObjects'], // parameter
+props: ['cats'], // parameter
 template:
-  <ul>
-    <li v-for="cat in catObjects">{{cat.name}}</li>
-  </ul>
-})*/
+  `<ul>
+    <li v-for="cat in cats">{{cat.name}}</li>
+  </ul>`
+})
 
 app = new Vue({
 el: "#root",
 component: [
         'cat-list'
 ],
-data: { // variables
+data: { // variables - must be lowercase
   greeting: "Hello Vue",
   count: 2,
   email: 'r@example.com',
   cats: [
     'kitkat', 'fish', 'henry', 'bosco', 'melanthios'
   ],
-  catObjects: [
+  catobjects: [
     {name: 'cat1'},
     {name: 'cat2'},
     {name: 'cat3'}
