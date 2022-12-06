@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+  .red {
+    border: 2px solid red;
+  }
+
+  .green {
+    border: 2px solid green;
+  }
+</style>
+<body>
+<div id="root">
+  <h1>{{greeting}}</h1>
+  <input v-model="greeting">
+  <div v-if="count === 1">Green</div>
+  <div v-else-if="count === 2">Red</div>
+  <div v-else>Orange</div>
+  <div v-show="count === 1">Green</div>
+  <br/>
+  <h1 v-text="email"></h1> <!-- replaces {{email}} -->
+  <p v-html="email"></p> <!-- reads html tags properly -->
+  <p v-once>{{email}}</p>
+  <!-- for one class, not toggled
+  <input v-model="email" :class="{red : email.length < 2}"> -->
+  <input v-model="email" :class="[email.length < 2 ? 'red' : 'green']">
+  <br/>
+  <!-- works but shorthand below
+  <button onclick="alert('signed up');" v-bind:disabled="email.length < 2">Submit</button> -->
+  <button onclick="alert('signed up');" :disabled="email.length < 2">Submit</button>
+  <br/>
+  {{kittifyName}}
+  <br/>
+  <input v-model="newCat" v-on:keyup.enter="addKitty">
+  <!-- to replace v-on: use @ -->
+  <button @click="addKitty">+ ADD</button>
+  <ul>
+    <li v-for="cat in cats">{{cat}}</li>
+    <li v-for="cat in catObjects"> {{cat.name | capitalize | kittify}}</li>
+    <!-- the above can get replaced by component, but not working
+      <cat-list : catObjects="catObjects"></cat-list> -->
+</ul>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.min.js"></script>
+<script>
+/* not getting this to work
+Vue.component('cat-list', {
+props: ['catObjects'], // parameter
+template:
+  <ul>
+    <li v-for="cat in catObjects">{{cat.name}}</li>
+  </ul>
+})*/
+
+app = new Vue({
+el: "#root",
+component: [
+        'cat-list'
+],
+data: { // variables
+  greeting: "Hello Vue",
+  count: 2,
+  email: 'r@example.com',
+  cats: [
+    'kitkat', 'fish', 'henry', 'bosco', 'melanthios'
+  ],
+  catObjects: [
+    {name: 'cat1'},
+    {name: 'cat2'},
+    {name: 'cat3'}
+  ],
+  newCat: ''
+},
+methods: {
+  addKitty: function()
+  {
+    this.catObjects.push({name: this.newCat})
+    this.newCat = ''
+  }
+},
+filters: {
+  capitalize: function(value) {
+    return value.toUpperCase();
+  },
+  kittify: function (value)
+  {
+     return value + 'y';
+  }
+},
+computed: {
+  kittifyName: function()
+  {
+    if (this.newCat.length > 1)
+    {
+      return this.newCat + 'y';
+    }
+  }
+},
+created: function()
+{
+  console.log("created");
+},
+mounted: function()
+{
+  console.log("mounted");
+},
+updated: function()
+{
+  console.log("updated");
+},
+destroyed: function()
+{
+  console.log("destroyed");
+}
+})
+</script>
+</body>
+</html>
